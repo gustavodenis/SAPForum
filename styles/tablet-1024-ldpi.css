@@ -1,0 +1,14 @@
+.ice-logo {
+   content:url("../images/ice_air_logo@x2.png");
+   background-size:100%;
+}
+#myTripsListView .checkIn a:before, #myTripsListView .tripDetail a:before {
+	content: "";
+	width: 18px;
+	height: 18px;
+    float:left;
+    margin-left:-5px;
+    margin-right:5px;
+    background-image: url(images/icons-36.png);
+	background-repeat: no-repeat;
+}
