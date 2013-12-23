@@ -26,13 +26,13 @@ airlinesData.prototype = function() {
 	getDataforFF = function(id, callback) {
 		fauxAjax(function () {
 			callback(ffInfo);
-		}, 'getting your data ...', this);
+		}, 'carregando...', this);
 	},
     
 	logOn = function (uid, pwd, callback) {
 		fauxAjax(function () {
 			callback('12345678', true);
-		}, 'logging you in ...', this);
+		}, 'autenticando ...', this);
 	},
     
 	fauxAjax = function fauxAjax(func, text, thisObj) {

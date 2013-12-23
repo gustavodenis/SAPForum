@@ -41,7 +41,7 @@
     <!-- home page -->
     <div id="home" data-role="page" data-mini="true">
         <div data-role="header" data-position="fixed" data-tap-toggle="false">
-            <h1>Hi <span id="ffname"></span>!</h1>
+            <h1>Olá <span id="ffname"></span>!</h1>
         </div>
         <div class="info-wrapper">
             <div class="info-wrapper-left">
@@ -121,15 +121,21 @@
                 Password:
 					<input type="password" id="pwd" value="P2ssw0rd" />
                 <input type="submit" value="Login" />
+                <input type="submit" value="LinkedIn" />
+                <input type="submit" value="Cadastre-se" />
             </form>
+            <div id="deviceready" class="blink">
+                <p class="event listening">Connecting to Device</p>
+                <p class="event received">Device is Ready</p>
+            </div>
+            <p><a href="#" class="topcoat-button" id="scan">SCAN</a></p>
+            <p><a href="#" class="topcoat-button" id="encode">ENCODE</a></p>
+            <p id="info"></p>
+
+            <script type="text/javascript">
+                app.initialize();
+            </script>
         </div>
-        <div id="deviceready" class="blink">
-            <p class="event listening">Connecting to Device</p>
-            <p class="event received">Device is Ready</p>
-        </div>
-        <p><a href="#" class="topcoat-button" id="scan">SCAN</a></p>
-        <p><a href="#" class="topcoat-button" id="encode">ENCODE</a></p>
-        <p id="info"></p>
     </div>
 
     <!-- tripDetail page -->
