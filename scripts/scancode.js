@@ -1,4 +1,4 @@
-var app = {
+var appScan = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();

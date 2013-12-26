@@ -8,9 +8,9 @@ function onDeviceReady() {
 	
 }
 
-var airlinesApp = function(){}
+var sapForumApp = function(){}
 
-airlinesApp.prototype = function() {
+sapForumApp.prototype = function() {
     var _flightForCheckin = null,
     _flightForDetails=null,
     _ffNum = null, 
@@ -71,12 +71,23 @@ airlinesApp.prototype = function() {
     _initHome = function(){
         if (!_login) {
 	    	$.mobile.changePage("#logon", { transition: "flip" });
-	    	$('#login').submit(function () {
-	    		$(this).hide();
-	    		_login = true;
-	    		airData.logOn($('#userName').val(), $('#pwd').val(),_handleLogOn);
-	    		return false;
+	    	$('.loginBtn').click(function () {
+	    	    var logType = window.localStorage.getItem("loginType");
+	    	    if (logType == undefined) {
+	    	        window.localStorage.setItem("loginType", $(this).val());
+	    	        window.localStorage.setItem("idlogin", "blabla");
+	    	    }
+	    	    $(this).hide();
+	    	    _login = true;
+	    	    sapData.logOn($('#userName').val(), $('#pwd').val(), _handleLogOn);
+	    	    return false;
 	    	});
+	    	/*$('#login').submit(function () {
+	    	    $(this).hide();
+	    		_login = true;
+	    		sapData.logOn($('#userName').val(), $('#pwd').val(),_handleLogOn);
+	    		return false;
+	    	});*/
 	    }
     },
     
@@ -93,7 +104,7 @@ airlinesApp.prototype = function() {
     _handleLogOn = function (ff, success) {
 		if (success) {
 			_ffNum = ff;
-			airData.getDataforFF(_ffNum,_handleDataForFF);
+			sapData.getDataforFF(_ffNum,_handleDataForFF);
 		}
 	},
     
@@ -112,7 +123,6 @@ airlinesApp.prototype = function() {
 			var item = $('#' + flight.id, $flightList);
 			item.data('flight', flight);
 			if (flight.timeToCheckIn) {
-
 				item.addClass('checkIn');
 				$('a', item).attr('href', '#checkIn');
 			}

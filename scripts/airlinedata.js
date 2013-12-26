@@ -1,8 +1,8 @@
-var airlinesData = function(timeToLoad) {
+var offData = function (timeToLoad) {
 	this.busyTime = timeToLoad || 1000;
 };
 
-airlinesData.prototype = function() {
+offData.prototype = function () {
 	var ffInfo = {
 		firstName: 'Jaxon', lastName: 'Daniels', ffNum: '12345678', status: 'Diamond', miles: 55555,
     

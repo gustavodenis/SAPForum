@@ -9,16 +9,22 @@
     <script src="cordova.js" type="text/javascript"></script>
     <script src="jquery-mobile/jquery.min.js" type="text/javascript"></script>
     <script src="jquery-mobile/jquery.mobile-1.3.1.min.js" type="text/javascript"></script>
+    <script src="scripts/airlinedata.js" type="text/javascript"></script>
+    <script src="scripts/seatmapdrawing.js" type="text/javascript"></script>
+    <script src="scripts/main.js" type="text/javascript"></script>
+    <script src="scripts/scancode.js" type="text/javascript"></script>
+    <script src="scripts/notification.js" type="text/javascript"></script>
+    <script src="scripts/OAuthSimple.js" type="text/javascript"></script>
+    <script src="scripts/childbrowser.js" type="text/javascript"></script>
+    <!--<script type="text/javascript" src="http://platform.linkedin.com/in.js">
+        api_key: 75tqfpco6w6mo0
+        authorize: true
+    </script>-->
     <script>
         $(function () {
             $.mobile.defaultHomeScroll = 0;
         });
     </script>
-    <script src="scripts/airlinedata.js" type="text/javascript"></script>
-    <script src="scripts/seatmapdrawing.js" type="text/javascript"></script>
-    <script src="scripts/main.js" type="text/javascript"></script>
-    <script src="scripts/scancode.js" type="text/javascript"></script>
-
     <!-- Default Stylesheet -->
     <link rel="stylesheet" href="styles/main.css" />
     <!-- Phone 320x480 High DPI (aka Retina) -->
@@ -41,7 +47,7 @@
     <!-- home page -->
     <div id="home" data-role="page" data-mini="true">
         <div data-role="header" data-position="fixed" data-tap-toggle="false">
-            <h1>Olá <span id="ffname"></span>!</h1>
+            <h1>Ola <span id="ffname"></span>!</h1>
         </div>
         <div class="info-wrapper">
             <div class="info-wrapper-left">
@@ -80,21 +86,6 @@
                     <a href="#flightStatus" data-transition="slide">Flight Status</a>
                 </li>
             </ul>
-            <ul data-role="listview" id="bagTrackView" data-inset="true" data-theme="d">
-                <li>
-                    <a href="#bagTrack" data-transition="slide">Track your bag</a>
-                </li>
-            </ul>
-            <ul data-role="listview" id="programProgressView" data-inset="true" data-theme="d">
-                <li>
-                    <a href="#programProgress" data-transition="slide">Mileage program progress</a>
-                </li>
-            </ul>
-            <ul data-role="listview" id="settingsView" data-inset="true" data-theme="d">
-                <li>
-                    <a href="#settings" data-transition="slide">Settings</a>
-                </li>
-            </ul>
         </div>
     </div>
 
@@ -116,25 +107,21 @@
         </div>
         <div data-role="content">
             <form id="login">
-                Username:
+                E-mail:
 					<input type="text" id="userName" value="jaxon.daniels@gmail.com" />
                 Password:
 					<input type="password" id="pwd" value="P2ssw0rd" />
-                <input type="submit" value="Login" />
-                <input type="submit" value="LinkedIn" />
-                <input type="submit" value="Cadastre-se" />
+                <input type="submit" class="loginBtn" value="Login" data-icon="star" data-theme="a" />
+                <input type="submit" class="loginBtn" value="LinkedIn" data-icon="star" data-theme="b" />
+                <input type="submit" class="loginBtn" value="Cadastre-se" data-icon="star" data-theme="e" />
             </form>
             <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
             </div>
-            <p><a href="#" class="topcoat-button" id="scan">SCAN</a></p>
-            <p><a href="#" class="topcoat-button" id="encode">ENCODE</a></p>
+            <p><a href="#" class="topcoat-button" id="scan" data-icon="star" data-theme="e">SCAN</a></p>
+            <p><a href="#" class="topcoat-button" id="encode" data-icon="star" data-theme="e">ENCODE</a></p>
             <p id="info"></p>
-
-            <script type="text/javascript">
-                app.initialize();
-            </script>
         </div>
     </div>
 
@@ -309,63 +296,16 @@
             </ul>
         </div>
     </div>
-
-    <!--flightStatus page-->
-    <div id="flightStatus" data-role="page" data-add-back-btn="true">
-        <div data-role="header" data-position="fixed" data-tap-toggle="false">
-            <h1>Flight Status</h1>
-
-        </div>
-        <div data-role="content">
-            <ul data-role="listview" id="Ul1" data-inset="true" data-theme="d">
-                <li>Coming Soon!</li>
-            </ul>
-        </div>
-    </div>
-
-    <!--bagTrack page-->
-    <div id="bagTrack" data-role="page" data-add-back-btn="true">
-        <div data-role="header" data-position="fixed" data-tap-toggle="false">
-            <h1>Bag Track</h1>
-        </div>
-        <div data-role="content">
-            <ul data-role="listview" id="Ul2" data-inset="true" data-theme="d">
-                <li>Coming Soon!</li>
-            </ul>
-        </div>
-    </div>
-
-    <!--programProgress page-->
-    <div id="programProgress" data-role="page" data-add-back-btn="true">
-        <div data-role="header" data-position="fixed" data-tap-toggle="false">
-            <h1>Progress</h1>
-        </div>
-        <div data-role="content">
-            <ul data-role="listview" id="Ul3" data-inset="true" data-theme="d">
-                <li>Coming Soon!</li>
-            </ul>
-        </div>
-    </div>
-
-    <!--Settings page-->
-    <div id="settings" data-role="page" data-add-back-btn="true">
-        <div data-role="header" data-position="fixed" data-tap-toggle="false">
-            <h1>Settings</h1>
-        </div>
-        <div data-role="content">
-            <ul data-role="listview" id="Ul4" data-inset="true" data-theme="d">
-                <li>Come on, this is just a sample!</li>
-            </ul>
-        </div>
-    </div>
-
 </body>
 </html>
 
 <script>
-    var seatMapDrawing = new seatMapDrawing();
-    var airData = new airlinesData(2000);
-    var airlines = new airlinesApp();
-    airlines.run();
+    //var seatMapDrawing = new seatMapDrawing();
+    var sapData = new offData(2000);
+    var sapforum = new sapForumApp();
+    sapforum.run();
+    appScan.initialize();
+    /*appNotify.initialize();
+
 </script>
 

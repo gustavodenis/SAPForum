@@ -2,7 +2,8 @@ body {
     
 } 
 .ui-page {
-    background:#d3dfe5;
+    /*background:#d3dfe5;*/
+    background:#0099CC;
 }
 .ui-content {
     padding:1em;
