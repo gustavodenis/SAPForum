@@ -13,7 +13,7 @@ function registerPushwooshIOS() {
         pushNotification.setApplicationIconBadgeNumber(0);
     });
 
-    pushNotification.registerDevice({ alert: true, badge: true, sound: true, pw_appid: "F4C02-5215F", appname: "SAPForum" },
+    pushNotification.registerDevice({ alert: true, badge: true, sound: true, pw_appid: "F4C02-5215F", appname: "Pushwoosh" },
                                                                     function (status) {
                                                                         var deviceToken = status['deviceToken'];
                                                                         console.warn('registerDevice: ' + deviceToken);
