@@ -67,7 +67,7 @@ function registerPushwooshAndroid() {
     });
 
     //projectid: "GOOGLE_PROJECT_ID", appid : "PUSHWOOSH_APP_ID"
-    pushNotification.registerDevice({ projectid: "first-planet-441", appid: "F4C02-5215F" },
+    pushNotification.registerDevice({ projectid: "683239994824", appid: "F4C02-5215F" },
                                                                     function (token) {
                                                                         alert(token);
                                                                         //callback when pushwoosh is ready
