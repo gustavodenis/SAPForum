@@ -124,10 +124,10 @@ var appNotify = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         initPushwoosh();
-        app.receivedEvent('deviceready');
+        appNotify.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event
     receivedEvent: function (id) {
-        $('.notifyreceived').text('teste');
+        $('.notifyreceived').text(id);
     }
 };

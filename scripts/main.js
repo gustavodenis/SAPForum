@@ -1,140 +1,77 @@
-
 // Wait for Apache Cordova to load
 document.addEventListener("deviceready", onDeviceReady, false);
 
 // PhoneGap is ready
-function onDeviceReady() {
-    
-	
-}
+function onDeviceReady() { }
+var sapForumApp = function () { }
 
-var sapForumApp = function(){}
+sapForumApp.prototype = function () {
 
-sapForumApp.prototype = function() {
     var _flightForCheckin = null,
-    _flightForDetails=null,
-    _ffNum = null, 
+    _flightForDetails = null,
+    _ffNum = null,
     _customerData = null,
     _login = false,
-    
-    run = function(){
-        var that = this,
-        $seatPicker=$('#seatPicker');
-        $('#tripDetail').on('pagebeforeshow',$.proxy(_initTripDetail,that));
-        $('#boardingPass').on('pageshow',$.proxy(_initBoardingPass,that));
-        $('#home').on('pagebeforecreate',$.proxy(_initHome,that));
-        $('#checkIn').on('pageshow', $.proxy(_initCheckIn,that));
-        
-        $('#myTripsListView').on('click', 'li', function () {
-        	var item = $(this);
-        	_flightForCheckin = item.data('flight');
-            _flightForDetails = item.data('flight');
-        });
-        
-        $seatPicker.on('pageshow', function (event) {
-        	var el = $('#seatMapPickerContainer', this),
-        	seat = _flightForCheckin.segments[_flightForCheckin.currentSegment].seat;
-        	seatMapDrawing.drawSeatMap(el, seat);
-        
-        });
-        
-        $seatPicker.on('pagebeforehide', function (event) {
-        	_flightForCheckin.segments[_flightForCheckin.currentSegment].seat = seatMapDrawing.getselectedSeat();
-        });
-    },
-    
-    _initTripDetail = function(){
-        var seg = _flightForDetails.segments[0];
-	    $('#tripDetail-title').text(seg.from + ' to ' + seg.to);
-	    $('#tripDetail-flightNum').text(seg.flightNum);
-	    $('#tripDetail-depart').text(seg.departDate + ' at ' + seg.time);
-	    $('#tripDetail-seat').text(seg.seat);
-	    seg = _flightForDetails.segments[1];
-	    $('#tripDetail-return-title').text(seg.from + ' to ' + seg.to);
-	    $('#tripDetail-return-flightNum').text(seg.flightNum);
-	    $('#tripDetail-return-depart').text(seg.departDate + ' at ' + seg.time);
-        $('#tripDetail-return-seat').text(seg.seat);
-    },
-    
-    _initBoardingPass = function(){
-        currentseg = _flightForCheckin.segments[_flightForCheckin.currentSegment];
 
-	    $('#boardingpass-cnum').text(_flightForCheckin.cNum);
-	    $('#boardingpass-passenger').text(_customerData.firstName + ' ' + _customerData.lastName);
-	    $('#boardingpass-seat').text(currentseg.seat);
-	    $('#boardingpass-gate').text(currentseg.gate);
-	    $('#boardingpass-depart').text(currentseg.time);
-	    var flight = currentseg.flightNum + ':' + currentseg.from + ' to ' + currentseg.to;
-	    $('#boardingpass-flight').text(flight);
+    run = function () {
+        var that = this;
+        $('#home').on('pagebeforecreate', $.proxy(_initHome, that));
+        $('#pointsDetail').on('pagebeforeshow', $.proxy(_initpointsDetail, that));
+        $('#infoSession').on('pageshow', $.proxy(_initinfoSession, that));
+        $('#agendaPage').on('pageshow', $.proxy(_initagendaPage, that));
+        $('#luluPage').on('pageshow', $.proxy(_initluluPage, that));
+
+        var idlogin = window.localStorage.getItem("idlogin");
+        if (idlogin != undefined) {
+            _login = true;
+            $.mobile.changePage('#home', { transition: 'flip' });
+        }
     },
-    
-    _initHome = function(){
+
+    _initpointsDetail = function () {
+    },
+
+    _initinfoSession = function () {
+        $('#dataAgenda').text("14/02/2014");
+    },
+
+    _initHome = function () {
         if (!_login) {
-	    	$.mobile.changePage("#logon", { transition: "flip" });
-	    	$('.loginBtn').click(function () {
-	    	    var logType = window.localStorage.getItem("loginType");
-	    	    if (logType == undefined) {
-	    	        window.localStorage.setItem("loginType", $(this).val());
-	    	        window.localStorage.setItem("idlogin", "blabla");
-	    	    }
-	    	    $(this).hide();
-	    	    _login = true;
-	    	    sapData.logOn($('#userName').val(), $('#pwd').val(), _handleLogOn);
-	    	    return false;
-	    	});
-	    	/*$('#login').submit(function () {
-	    	    $(this).hide();
-	    		_login = true;
-	    		sapData.logOn($('#userName').val(), $('#pwd').val(),_handleLogOn);
-	    		return false;
-	    	});*/
-	    }
+            $.mobile.changePage("#logon", { transition: "flip" });
+            $('.loginBtn').click(function () {
+                var logType = window.localStorage.getItem("loginType");
+                if (logType == undefined) {
+                    window.localStorage.setItem("loginType", $(this).val());
+                    window.localStorage.setItem("idlogin", "blabla");
+                }
+                $(this).hide();
+                _login = true;
+                sapData.logOn($('#userName').val(), $('#pwd').val(), _handleLogOn);
+                return false;
+            });
+        }
     },
-    
-    _initCheckIn = function(){
-        var currentseg = _flightForCheckin.segments[_flightForCheckin.currentSegment],
-	    seat = currentseg.seat,
-	    flight = currentseg.from + ' to ' + currentseg.to;
-	    $('#checkIn-flight-number').text(currentseg.flightNum);
-	    $('#checkIn-flight-destination').text(flight);
-        
-	    $('#checkIn-seat').text(seat);
-    },
-    
-    _handleLogOn = function (ff, success) {
-		if (success) {
-			_ffNum = ff;
-			sapData.getDataforFF(_ffNum,_handleDataForFF);
-		}
-	},
-    
-    _handleDataForFF = function (data) {
-        $flightList = $('#myTripsListView');
-		_customerData = data;
-		$('#ffname').text(data.firstName);
-		$('#ffnum').text(data.ffNum);
-		$('#currentStatus').text(data.status);
-		$('#miles').text(data.miles);
-		$('#numberOfFlights').text(data.flights.length);
-		for (var i in data.flights) {
-			var flight = data.flights[i],
-            currentSegment = flight.segments[flight.currentSegment];
-			$flightList.append('<li id="' + flight.id + '"><a href="#tripDetail" data-transition="slide">' + currentSegment.from + ' to ' + currentSegment.to + '</a></li>');
-			var item = $('#' + flight.id, $flightList);
-			item.data('flight', flight);
-			if (flight.timeToCheckIn) {
-				item.addClass('checkIn');
-				$('a', item).attr('href', '#checkIn');
-			}
-			else {
-				item.addClass('tripDetail');
-			}
-		}
-		$.mobile.changePage('#home', { transition: 'flip' });
 
-	};
-    
+    _initagendaPage = function () {
+    },
+
+    _initluluPage = function () {
+    },
+
+    _handleLogOn = function (ff, success) {
+        if (success) {
+            _ffNum = ff;
+            sapData.getDataforFF(_ffNum, _handleDataForFF);
+        }
+    },
+
+    _handleDataForFF = function (data) {
+        $('#labelpointsTotal').text("Gustavo Denis");
+        $('#bestStand').text("Softtek");
+        $.mobile.changePage('#home', { transition: 'flip' });
+    };
+
     return {
-        run:run,
+        run: run,
     };
 }();

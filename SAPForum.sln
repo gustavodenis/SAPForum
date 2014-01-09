@@ -8,20 +8,20 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SAPForum", "http://localhos
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_1648"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\..\GitHub\SAPForum\"
+		Debug.AspNetCompiler.PhysicalPath = "..\SAPForum\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_1648\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/localhost_1648"
-		Release.AspNetCompiler.PhysicalPath = "..\..\..\GitHub\SAPForum\"
+		Release.AspNetCompiler.PhysicalPath = "..\SAPForum\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_1648\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		SlnRelativePath = "..\..\..\GitHub\SAPForum\"
+		SlnRelativePath = "..\SAPForum\"
 	EndProjectSection
 EndProject
 Global
