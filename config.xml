@@ -58,6 +58,7 @@
   <plugin name="PushNotification" value="PushNotification" />
   <gap:plugin name="com.phonegap.plugins.barcodescanner"/>
   <gap:plugin name="com.pushwoosh.plugins.pushwoosh"/>
+  <gap:plugin name="com.simonmacdonald.telephonenumber" />
   <gap:platform name="ios" />
   <gap:platform name="android" />
 

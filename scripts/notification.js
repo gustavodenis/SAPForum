@@ -128,6 +128,6 @@ var appNotify = {
     },
     // Update DOM on a Received Event
     receivedEvent: function (id) {
-        $('.notifyreceived').text(id);
+        $('.mainContent').text(id);
     }
 };

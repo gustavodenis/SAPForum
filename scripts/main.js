@@ -21,8 +21,7 @@ sapForumApp.prototype = function () {
         $('#agendaPage').on('pageshow', $.proxy(_initagendaPage, that));
         $('#luluPage').on('pageshow', $.proxy(_initluluPage, that));
 
-        var idlogin = window.localStorage.getItem("idlogin");
-        if (idlogin != undefined) {
+        if (window.localStorage.getItem("idlogin") != null) {
             _login = true;
             $.mobile.changePage('#home', { transition: 'flip' });
         }
@@ -39,8 +38,7 @@ sapForumApp.prototype = function () {
         if (!_login) {
             $.mobile.changePage("#logon", { transition: "flip" });
             $('.loginBtn').click(function () {
-                var logType = window.localStorage.getItem("loginType");
-                if (logType == undefined) {
+                if (window.localStorage.getItem("idlogin") === null) {
                     window.localStorage.setItem("loginType", $(this).val());
                     window.localStorage.setItem("idlogin", "blabla");
                 }
@@ -56,6 +54,20 @@ sapForumApp.prototype = function () {
     },
 
     _initluluPage = function () {
+    },
+
+    _checkConnection = function() {
+        var networkState = navigator.connection.type;
+        alert(networkState);
+    },
+
+    _checkDevicePhoneNumber = function () {
+        var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
+        telephoneNumber.get(function (result) {
+            alert(result);
+        }, function () {
+            console.log("error");
+        });
     },
 
     _handleLogOn = function (ff, success) {

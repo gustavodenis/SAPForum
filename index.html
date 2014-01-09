@@ -12,6 +12,7 @@
     <script src="barcodescanner.js" type="text/javascript"></script>
     <script src="childbrowser.js" type="text/javascript"></script>
     <script src="PushNotification.js" type="text/javascript" ></script>
+    <script src="telephonenumber.js" type="text/javascript"></script>
     <script src="scripts/airlinedata.js" type="text/javascript"></script>
     <script src="scripts/main.js" type="text/javascript"></script>
     <script src="scripts/scancode.js" type="text/javascript"></script>
@@ -65,6 +66,7 @@
             <div class="clear"></div>
         </div>
         <div data-role="content">
+            <span id="mainContent"></span>
             <!--<ul data-role="listview" id="myTripsView" data-inset="true" data-theme="d">
                 <li>
                     <a href="#myTrips" data-transition="slide">
@@ -78,17 +80,11 @@
                 </li>
             </ul>-->
         </div>
-        <div id="deviceready" class="blink">
-            <p class="event listening">Connecting to Device</p>
-            <p class="event received">Device is Ready</p>
-            <p class="event notifyreceived">Notify is Ready</p>
-        </div>
-        <p><a href="#" class="topcoat-button" id="points" data-icon="star" data-theme="e">Meus Pontos</a></p>
-        <p><a href="#" class="topcoat-button" id="scan" data-icon="star" data-theme="e">Marcar Pontos</a></p>
-        <p><a href="#" class="topcoat-button" id="infosession" data-icon="star" data-theme="e">Palestra</a></p>
-        <p><a href="#" class="topcoat-button" id="agenda" data-icon="star" data-theme="e">Agende uma visita</a></p>
-        <p><a href="#" class="topcoat-button" id="lulu" data-icon="star" data-theme="e">Stand Lulu</a></p>
-        <!--<p><a href="#" class="topcoat-button" id="encode" data-icon="star" data-theme="e">ENCODE</a></p>-->
+        <p><a href="#pointsDetail" class="topcoat-button" id="points" data-role="button" data-icon="star" data-transition="slide" data-theme="e">Meus Pontos</a></p>
+        <p><a href="#" class="topcoat-button" id="scan" data-icon="star" data-role="button" data-theme="e">Marcar Pontos</a></p>
+        <p><a href="#infoSession" class="topcoat-button" id="infosession" data-role="button" data-icon="star" data-transition="slide" data-theme="e">Palestra</a></p>
+        <p><a href="#agendaPage" class="topcoat-button" id="agenda" data-role="button" data-icon="star" data-transition="slide" data-theme="e">Agende uma visita</a></p>
+        <p><a href="#luluPage" class="topcoat-button" id="lulu" data-role="button" data-icon="star" data-transition="slide" data-theme="e">Stand Lulu</a></p>
         <p id="info"></p>
     </div>
 
