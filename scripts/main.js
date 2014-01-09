@@ -2,16 +2,30 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
 // PhoneGap is ready
-function onDeviceReady() { }
+function onDeviceReady() {
+    checkConnection();
+}
+
+function checkConnection() {
+    var networkState = navigator.network.connection.type;
+
+    var states = {};
+    states[Connection.UNKNOWN] = 'Unknown connection';
+    states[Connection.ETHERNET] = 'Ethernet connection';
+    states[Connection.WIFI] = 'WiFi connection';
+    states[Connection.CELL_2G] = 'Cell 2G connection';
+    states[Connection.CELL_3G] = 'Cell 3G connection';
+    states[Connection.CELL_4G] = 'Cell 4G connection';
+    states[Connection.NONE] = 'No network connection';
+
+    alert('Connection type: ' + states[networkState]);
+}
+
 var sapForumApp = function () { }
 
 sapForumApp.prototype = function () {
 
-    var _flightForCheckin = null,
-    _flightForDetails = null,
-    _ffNum = null,
-    _customerData = null,
-    _login = false,
+    var _login = false,
 
     run = function () {
         var that = this;
@@ -26,7 +40,9 @@ sapForumApp.prototype = function () {
             $.mobile.changePage('#home', { transition: 'flip' });
         }
 
-        document.getElementById('scanQR').addEventListener('click', this._scanQR, false);
+        $('#scanQR').click(function () {
+            _scanQR();
+        });
     },
 
     _initpointsDetail = function () {
@@ -53,8 +69,6 @@ sapForumApp.prototype = function () {
     },
 
     _initagendaPage = function () {
-        var networkState = navigator.connection.type;
-        alert(networkState);
     },
 
     _initluluPage = function () {
@@ -70,24 +84,13 @@ sapForumApp.prototype = function () {
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
         scanner.scan(function (result) {
-
-            alert("We got a barcode\n" +
-            "Result: " + result.text + "\n" +
-            "Format: " + result.format + "\n" +
-            "Cancelled: " + result.cancelled);
-
-            console.log("Scanner result: \n" +
-                 "text: " + result.text + "\n" +
-                 "format: " + result.format + "\n" +
-                 "cancelled: " + result.cancelled + "\n");
+            alert(result.text);
             document.getElementById("info").innerHTML = result.text;
-            console.log(result);
             /*
             if (args.format == "QR_CODE") {
                 window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
             }
             */
-
         }, function (error) {
             console.log("Scanning failed: ", error);
         });

@@ -16,11 +16,11 @@ function registerPushwooshIOS() {
     pushNotification.registerDevice({ alert: true, badge: true, sound: true, pw_appid: "F4C02-5215F", appname: "SAPForumPushWoosh" },
                                                                     function (status) {
                                                                         var deviceToken = status['deviceToken'];
-                                                                        console.warn('registerDevice: ' + deviceToken);
+                                                                        alert('registerDevice: ' + deviceToken);
                                                                         onPushwooshiOSInitialized(deviceToken);
                                                                     },
                                                                     function (status) {
-                                                                        console.warn('failed to register : ' + JSON.stringify(status));
+                                                                        alert('failed to register : ' + JSON.stringify(status));
                                                                         navigator.notification.alert(JSON.stringify(['failed to register ', status]));
                                                                     });
 
@@ -32,10 +32,11 @@ function onPushwooshiOSInitialized(pushToken) {
     var pushNotification = window.plugins.pushNotification;
     //retrieve the tags for the device
     pushNotification.getTags(function (tags) {
+        alert(JSON.stringify(tags));
         console.warn('tags for the device: ' + JSON.stringify(tags));
     },
                                                      function (error) {
-                                                         console.warn('get tags error: ' + JSON.stringify(error));
+                                                         alert('get tags error: ' + JSON.stringify(error));
                                                      });
 }
 
@@ -50,7 +51,7 @@ function registerPushwooshAndroid() {
 
         //dump custom data to the console if it exists
         if (typeof (userData) != "undefined") {
-            console.warn('user data: ' + JSON.stringify(userData));
+            alert('user data: ' + JSON.stringify(userData));
         }
 
         //and show alert
@@ -60,36 +61,34 @@ function registerPushwooshAndroid() {
     //projectid: "GOOGLE_PROJECT_ID", appid : "PUSHWOOSH_APP_ID"
     pushNotification.registerDevice({ projectid: "683239994824", appid: "F4C02-5215F" },
                                                                     function (token) {
-                                                                        alert(token);
                                                                         //callback when pushwoosh is ready
                                                                         onPushwooshAndroidInitialized(token);
                                                                     },
                                                                     function (status) {
-                                                                        alert("failed to register: " + status);
-                                                                        console.warn(JSON.stringify(['failed to register ', status]));
+                                                                        alert(JSON.stringify(['failed to register ', status]));
                                                                     });
 }
 
 function onPushwooshAndroidInitialized(pushToken) {
     //output the token to the console
-    console.warn('push token: ' + pushToken);
+    alert('push token: ' + pushToken);
     var pushNotification = window.plugins.pushNotification;
 
     pushNotification.getTags(function (tags) {
-        console.warn('tags for the device: ' + JSON.stringify(tags));
+        alert('tags for the device: ' + JSON.stringify(tags));
     },
                                              function (error) {
-                                                 console.warn('get tags error: ' + JSON.stringify(error));
+                                                 alert('get tags error: ' + JSON.stringify(error));
                                              });
 
     pushNotification.setLightScreenOnNotification(false);
     //settings tags
     pushNotification.setTags({ deviceName: "hello", deviceId: 10 },
                                                                     function (status) {
-                                                                        console.warn('setTags success');
+                                                                        alert('setTags success');
                                                                     },
                                                                     function (status) {
-                                                                        console.warn('setTags failed');
+                                                                        alert('setTags failed');
                                                                     });
 }
 
@@ -124,7 +123,7 @@ var appNotify = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         initPushwoosh();
-        appNotify.receivedEvent('deviceready');
+        //appNotify.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event
     receivedEvent: function (id) {
