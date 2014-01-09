@@ -2,9 +2,7 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
 // PhoneGap is ready
-function onDeviceReady() {
-    checkConnection();
-}
+function onDeviceReady() { }
 
 function checkConnection() {
     var networkState = navigator.network.connection.type;
@@ -41,11 +39,24 @@ sapForumApp.prototype = function () {
         }
 
         $('#scanQR').click(function () {
-            _scanQR();
+            var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+
+            scanner.scan(function (result) {
+                alert(result.text);
+                document.getElementById("info").innerHTML = result.text;
+                /*
+                if (args.format == "QR_CODE") {
+                    window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
+                }
+                */
+            }, function (error) {
+                console.log("Scanning failed: ", error);
+            });
         });
     },
 
     _initpointsDetail = function () {
+        checkConnection();
     },
 
     _initinfoSession = function () {
@@ -79,22 +90,6 @@ sapForumApp.prototype = function () {
             console.log("error");
         });
     },
-
-    _scanQR = function () {
-        var scanner = cordova.require("cordova/plugin/BarcodeScanner");
-
-        scanner.scan(function (result) {
-            alert(result.text);
-            document.getElementById("info").innerHTML = result.text;
-            /*
-            if (args.format == "QR_CODE") {
-                window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
-            }
-            */
-        }, function (error) {
-            console.log("Scanning failed: ", error);
-        });
-    }
 
     _handleLogOn = function (ff, success) {
         if (success) {
