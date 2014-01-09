@@ -26,9 +26,7 @@ sapForumApp.prototype = function () {
             $.mobile.changePage('#home', { transition: 'flip' });
         }
 
-        $('#scanQR').on('click', function () {
-            sapForumApp._scanQR();
-        });
+        document.getElementById('scanQR').addEventListener('click', this._scanQR, false);
     },
 
     _initpointsDetail = function () {
@@ -55,9 +53,17 @@ sapForumApp.prototype = function () {
     },
 
     _initagendaPage = function () {
+        var networkState = navigator.connection.type;
+        alert(networkState);
     },
 
     _initluluPage = function () {
+        var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
+        telephoneNumber.get(function (result) {
+            alert(result);
+        }, function () {
+            console.log("error");
+        });
     },
 
     _scanQR = function () {
@@ -86,20 +92,6 @@ sapForumApp.prototype = function () {
             console.log("Scanning failed: ", error);
         });
     }
-
-    _checkConnection = function() {
-        var networkState = navigator.connection.type;
-        alert(networkState);
-    },
-
-    _checkDevicePhoneNumber = function () {
-        var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
-        telephoneNumber.get(function (result) {
-            alert(result);
-        }, function () {
-            console.log("error");
-        });
-    },
 
     _handleLogOn = function (ff, success) {
         if (success) {
