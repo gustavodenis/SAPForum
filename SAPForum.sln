@@ -24,13 +24,22 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SAPForum", "http://localhos
 		SlnRelativePath = "..\SAPForum\"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAPForum.WebService", "..\SAPForum.WebService\SAPForum.WebService.csproj", "{42A25456-1BD4-4850-8A58-2F249D34FB23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{FDA1D8C2-FD88-40B2-99A6-760E5CD6C43B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FDA1D8C2-FD88-40B2-99A6-760E5CD6C43B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDA1D8C2-FD88-40B2-99A6-760E5CD6C43B}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDA1D8C2-FD88-40B2-99A6-760E5CD6C43B}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{42A25456-1BD4-4850-8A58-2F249D34FB23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42A25456-1BD4-4850-8A58-2F249D34FB23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42A25456-1BD4-4850-8A58-2F249D34FB23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42A25456-1BD4-4850-8A58-2F249D34FB23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -67,26 +67,13 @@
         </div>
         <div data-role="content">
             <span id="mainContent"></span>
-            <!--<ul data-role="listview" id="myTripsView" data-inset="true" data-theme="d">
-                <li>
-                    <a href="#myTrips" data-transition="slide">
-                        MyTrips <span id="numberOfFlights"></span>
-                    </a>
-                </li>
-            </ul>
-            <ul data-role="listview" id="flightStatusView" data-inset="true" data-theme="d">
-                <li>
-                    <a href="#flightStatus" data-transition="slide">Flight Status</a>
-                </li>
-            </ul>-->
+            <p><a href="#pointsDetail" class="topcoat-button" id="points" data-role="button" data-icon="star" data-transition="slide" data-theme="e">Meus Pontos</a></p>
+            <p><button id="scanQR" class="ui-btn ui-icon-star ui-btn-icon-left">Marcar Pontos</button></p>
+            <p><a href="#infoSession" class="topcoat-button" id="infosession" data-role="button" data-icon="star" data-transition="slide" data-theme="e">Palestra</a></p>
+            <p><a href="#agendaPage" class="topcoat-button" id="agenda" data-role="button" data-icon="star" data-transition="slide" data-theme="e">Agende uma visita</a></p>
+            <p><a href="#luluPage" class="topcoat-button" id="lulu" data-role="button" data-icon="star" data-transition="slide" data-theme="e">Stand Lulu</a></p>
+            <p id="info"></p>
         </div>
-        <p><a href="#pointsDetail" class="topcoat-button" id="points" data-role="button" data-icon="star" data-transition="slide" data-theme="e">Meus Pontos</a></p>
-        <!--<p><a href="#" class="topcoat-button" id="scanQR" data-role="button" data-icon="star" data-theme="e">Marcar Pontos</a></p>-->
-        <p><button id="scanQR" class="ui-btn ui-icon-star ui-btn-icon-left">Marcar Pontos</button></p>
-        <p><a href="#infoSession" class="topcoat-button" id="infosession" data-role="button" data-icon="star" data-transition="slide" data-theme="e">Palestra</a></p>
-        <p><a href="#agendaPage" class="topcoat-button" id="agenda" data-role="button" data-icon="star" data-transition="slide" data-theme="e">Agende uma visita</a></p>
-        <p><a href="#luluPage" class="topcoat-button" id="lulu" data-role="button" data-icon="star" data-transition="slide" data-theme="e">Stand Lulu</a></p>
-        <p id="info"></p>
     </div>
 
     <!-- logon page -->
@@ -97,13 +84,13 @@
         <div data-role="content">
             <form id="login">
                 Nome:
-                <input type="text" id="userName" value="" />
+                <input type="text" id="firstname" value="" />
                 Sobrenome:
-                <input type="text" id="userLastName" value="" />
+                <input type="text" id="lastname" value="" />
                 Empresa:
-                <input type="text" id="userEmployer" value="" />
+                <input type="text" id="employer" value="" />
                 E-mail:
-                <input type="text" id="userEmail" value="@" />
+                <input type="text" id="email" value="@" />
                 <input type="submit" class="loginBtn" value="Login" data-icon="star" data-theme="a" />
             </form>
         </div>
@@ -118,7 +105,7 @@
             <div id="disclamerContainer">
                 bla bla bla
 
-                <a data-role="button" href="#home" data-icon="star" data-transition="slide" data-theme="a">Ok, Vamos lá!</a>
+                <a id="okdisclamer" data-role="button" href="#home" data-icon="star" data-transition="slide" data-theme="a">Ok, Vamos lá!</a>
             </div>
         </div>
     </div>

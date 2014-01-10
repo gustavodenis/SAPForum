@@ -53,6 +53,10 @@ sapForumApp.prototype = function () {
                 console.log("Scanning failed: ", error);
             });
         });
+
+        $('#okdisclamer').click(function () {
+            window.localStorage.setItem("disclamer", "ok");
+        });
     },
 
     _initpointsDetail = function () {
@@ -67,9 +71,14 @@ sapForumApp.prototype = function () {
         if (!_login) {
             $.mobile.changePage("#logon", { transition: "flip" });
             $('.loginBtn').click(function () {
+                var idUsr;
+                $.post("ec2-54-201-233-206.us-west-2.compute.amazonaws.com/odata/User", $("#login").serialize())
+                .done(function( data ) {
+                    alert( "Data Loaded: " + data );
+                });
+
                 if (window.localStorage.getItem("idlogin") === null) {
-                    window.localStorage.setItem("loginType", $(this).val());
-                    window.localStorage.setItem("idlogin", "blabla");
+                    window.localStorage.setItem("idlogin", idUsr);
                 }
                 $(this).hide();
                 _login = true;
@@ -80,6 +89,17 @@ sapForumApp.prototype = function () {
     },
 
     _initagendaPage = function () {
+
+        //$.getJSON("ec2-54-201-233-206.us-west-2.compute.amazonaws.com/ws/Logon/Login",
+        //    { name: "John", lastname:"Keep", email: "teste@teste.com.br", employer: "stk" })
+        //.done(function (json) {
+        //    idUsr = json.idUser
+        //    alert("JSON Data: " + idUsr);
+        //})
+        //.fail(function (jqxhr, textStatus, error) {
+        //    var err = textStatus + ", " + error;
+        //    alert("Request Failed: " + err);
+        //});
     },
 
     _initluluPage = function () {
@@ -101,7 +121,10 @@ sapForumApp.prototype = function () {
     _handleDataForFF = function (data) {
         $('#labelpointsTotal').text("Gustavo Denis");
         $('#bestStand').text("Softtek");
-        $.mobile.changePage('#home', { transition: 'flip' });
+        if (window.localStorage.getItem("disclamer") === null)
+            $.mobile.changePage('#disclamer', { transition: 'flip' });
+        else
+            $.mobile.changePage('#home', { transition: 'flip' });
     };
 
     return {
