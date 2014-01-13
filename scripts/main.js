@@ -61,8 +61,8 @@ sapForumApp.prototype = function () {
             .done(function (data) {
                 alert("Data Loaded: " + data);
             })
-            .fail(function () {
-                alert("error Ajax AWS");
+            .fail(function( jqXHR, textStatus ) {
+                alert( "Request failed: " + textStatus );
             });
 
             if (window.localStorage.getItem("idlogin") === null) {
