@@ -55,6 +55,25 @@ sapForumApp.prototype = function () {
             });
         });
 
+        $('.loginBtn').click(function () {
+            var idUsr;
+            $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User", $("#login").serialize())
+            .done(function (data) {
+                alert("Data Loaded: " + data);
+            })
+            .fail(function () {
+                alert("error Ajax AWS");
+            });
+
+            if (window.localStorage.getItem("idlogin") === null) {
+                window.localStorage.setItem("idlogin", idUsr);
+            }
+            $(this).hide();
+            _login = true;
+            sapData.logOn($('#userName').val(), $('#pwd').val(), _handleLogOn);
+            return false;
+        });
+
         $('#okdisclamer').click(function () {
             window.localStorage.setItem("disclamer", "ok");
         });
@@ -71,21 +90,6 @@ sapForumApp.prototype = function () {
     _initHome = function () {
         if (!_login) {
             $.mobile.changePage("#logon", { transition: "flip" });
-            $('.loginBtn').click(function () {
-                var idUsr;
-                $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User", $("#login").serialize())
-                .done(function (data) {
-                    alert("Data Loaded: " + data);
-                });
-
-                if (window.localStorage.getItem("idlogin") === null) {
-                    window.localStorage.setItem("idlogin", idUsr);
-                }
-                $(this).hide();
-                _login = true;
-                sapData.logOn($('#userName').val(), $('#pwd').val(), _handleLogOn);
-                return false;
-            });
         }
     },
 
