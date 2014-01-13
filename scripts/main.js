@@ -26,6 +26,7 @@ sapForumApp.prototype = function () {
     var _login = false,
 
     run = function () {
+
         var that = this;
         $('#home').on('pagebeforecreate', $.proxy(_initHome, that));
         $('#pointsDetail').on('pagebeforeshow', $.proxy(_initpointsDetail, that));
@@ -109,7 +110,6 @@ sapForumApp.prototype = function () {
     },
 
     _initagendaPage = function () {
-
         //$.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Login",
         //    { name: "John", lastname:"Keep", email: "teste@teste.com.br", employer: "stk" })
         //.done(function (json) {
@@ -132,7 +132,6 @@ sapForumApp.prototype = function () {
     },
 
     _initlulurankPage = function () {
-
     },
 
     fauxAjax = function fauxAjax(func, text, thisObj) {
@@ -140,7 +139,6 @@ sapForumApp.prototype = function () {
         window.setTimeout(function () {
             $.mobile.loading('hide');
             func();
-
         }, 1000);
     };
 
