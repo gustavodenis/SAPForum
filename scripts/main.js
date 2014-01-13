@@ -56,8 +56,9 @@ sapForumApp.prototype = function () {
             if (window.localStorage.getItem("userInfo") === null) {
 
                 fauxAjax(function () {
-                    alert($("#login").serialize());
-                    $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User", $("#login").serialize())
+                    alert({ firstname: $('#firstname').val(), lastname: $('#lastname').val(), employer: $('#employer').val(), email: $('#email').val() });
+                    $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User", 
+                        { firstname: $('#firstname').val(), lastname: $('#lastname').val(), employer: $('#employer').val(), email: $('#email').val() })
                     .done(function (data) {
                         window.localStorage.setItem("userInfo", data);
                         userInfo = data;
