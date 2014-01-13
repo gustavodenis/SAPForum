@@ -188,9 +188,13 @@
 </html>
 
 <script>
+    jQuery.support.cors = true;
+    $.ajaxSetup({
+        cache: false
+    });
     var sapData = new offData(2000);
     var sapforum = new sapForumApp();
     sapforum.run();
-    appNotify.initialize();
+    appNotify.initialize();    
 </script>
 
