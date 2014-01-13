@@ -32,6 +32,7 @@ sapForumApp.prototype = function () {
         $('#infoSession').on('pageshow', $.proxy(_initinfoSession, that));
         $('#agendaPage').on('pageshow', $.proxy(_initagendaPage, that));
         $('#luluPage').on('pageshow', $.proxy(_initluluPage, that));
+        $('#lulurankPage').on('pageshow', $.proxy(_initlulurankPage, that));
 
         if (window.localStorage.getItem("idlogin") != null) {
             _login = true;
@@ -72,9 +73,9 @@ sapForumApp.prototype = function () {
             $.mobile.changePage("#logon", { transition: "flip" });
             $('.loginBtn').click(function () {
                 var idUsr;
-                $.post("ec2-54-201-233-206.us-west-2.compute.amazonaws.com/odata/User", $("#login").serialize())
-                .done(function( data ) {
-                    alert( "Data Loaded: " + data );
+                $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User", $("#login").serialize())
+                .done(function (data) {
+                    alert("Data Loaded: " + data);
                 });
 
                 if (window.localStorage.getItem("idlogin") === null) {
@@ -90,7 +91,7 @@ sapForumApp.prototype = function () {
 
     _initagendaPage = function () {
 
-        //$.getJSON("ec2-54-201-233-206.us-west-2.compute.amazonaws.com/ws/Logon/Login",
+        //$.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Login",
         //    { name: "John", lastname:"Keep", email: "teste@teste.com.br", employer: "stk" })
         //.done(function (json) {
         //    idUsr = json.idUser
@@ -109,6 +110,10 @@ sapForumApp.prototype = function () {
         }, function () {
             console.log("error");
         });
+    },
+
+    _initlulurankPage = function () {
+
     },
 
     _handleLogOn = function (ff, success) {
