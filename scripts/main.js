@@ -35,6 +35,7 @@ sapForumApp.prototype = function () {
         $('#lulurankPage').on('pageshow', $.proxy(_initlulurankPage, that));
 
         if (window.localStorage.getItem("userInfo") != null) {
+            alert(window.localStorage.getItem("userInfo"));
             _login = true;
             _loadHome(window.localStorage.getItem("userInfo"));
             $.mobile.changePage('#home', { transition: 'flip' });
@@ -97,7 +98,6 @@ sapForumApp.prototype = function () {
 
     _loadHome = function (userInfo)
     {
-        alert(userInfo);
         fauxAjax(function () {
             $('#ffname').text(userInfo.firstname);
             $('#bestStand').text("Softtek");
