@@ -56,24 +56,21 @@ sapForumApp.prototype = function () {
             if (window.localStorage.getItem("userInfo") === null) {
 
                 fauxAjax(function () {
-
+                    alert($("#login").serialize());
                     $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User", $("#login").serialize())
                     .done(function (data) {
                         window.localStorage.setItem("userInfo", data);
                         userInfo = data;
+                        _loadHome(userInfo);
 
                         $(this).hide();
                         _login = true;
-
-                        _loadHome(userInfo);
 
                         $.mobile.changePage('#home', { transition: 'flip' });
                     })
                     .fail(function (jqXHR, textStatus, errorThrown) {
                         alert("Request failed: " + textStatus + "," + errorThrown);
                     });
-
-                    callback(userInfo);
                 }, 'autenticando...', this);
             }
 
