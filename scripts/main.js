@@ -27,7 +27,6 @@ sapForumApp.prototype = function () {
 
     run = function () {
         var that = this;
-        var userInfo;
         $('#home').on('pagebeforecreate', $.proxy(_initHome, that));
         $('#pointsDetail').on('pagebeforeshow', $.proxy(_initpointsDetail, that));
         $('#infoSession').on('pageshow', $.proxy(_initinfoSession, that));
@@ -61,8 +60,7 @@ sapForumApp.prototype = function () {
                         { firstname: $('#firstname').val(), lastname: $('#lastname').val(), employer: $('#employer').val(), email: $('#email').val() })
                     .done(function (data) {
                         window.localStorage.setItem("userInfo", data);
-                        userInfo = data;
-                        _loadHome(userInfo);
+                        _loadHome(data);
 
                         $(this).hide();
                         _login = true;
@@ -99,6 +97,7 @@ sapForumApp.prototype = function () {
 
     _loadHome = function (userInfo)
     {
+        alert(userInfo);
         fauxAjax(function () {
             $('#ffname').text(userInfo.firstname);
             $('#bestStand').text("Softtek");
