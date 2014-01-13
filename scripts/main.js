@@ -61,8 +61,8 @@ sapForumApp.prototype = function () {
             .done(function (data) {
                 alert("Data Loaded: " + data);
             })
-            .fail(function( jqXHR, textStatus ) {
-                alert( "Request failed: " + textStatus );
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                alert("Request failed: " + textStatus + "," + errorThrown);
             });
 
             if (window.localStorage.getItem("idlogin") === null) {
