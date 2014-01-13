@@ -27,6 +27,7 @@ sapForumApp.prototype = function () {
 
     run = function () {
         var that = this;
+        var userInfo;
         $('#home').on('pagebeforecreate', $.proxy(_initHome, that));
         $('#pointsDetail').on('pagebeforeshow', $.proxy(_initpointsDetail, that));
         $('#infoSession').on('pageshow', $.proxy(_initinfoSession, that));
@@ -34,8 +35,9 @@ sapForumApp.prototype = function () {
         $('#luluPage').on('pageshow', $.proxy(_initluluPage, that));
         $('#lulurankPage').on('pageshow', $.proxy(_initlulurankPage, that));
 
-        if (window.localStorage.getItem("idlogin") != null) {
+        if (window.localStorage.getItem("userInfo") != null) {
             _login = true;
+            _loadHome(window.localStorage.getItem("userInfo"));
             $.mobile.changePage('#home', { transition: 'flip' });
         }
 
@@ -45,32 +47,37 @@ sapForumApp.prototype = function () {
             scanner.scan(function (result) {
                 alert(result.text);
                 document.getElementById("info").innerHTML = result.text;
-                /*
-                if (args.format == "QR_CODE") {
-                    window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
-                }
-                */
             }, function (error) {
                 console.log("Scanning failed: ", error);
             });
         });
 
         $('.loginBtn').click(function () {
-            var idUsr;
-            $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User", $("#login").serialize())
-            .done(function (data) {
-                alert("Data Loaded: " + data);
-            })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                alert("Request failed: " + textStatus + "," + errorThrown);
-            });
+            if (window.localStorage.getItem("userInfo") === null) {
 
-            if (window.localStorage.getItem("idlogin") === null) {
-                window.localStorage.setItem("idlogin", idUsr);
+                fauxAjax(function () {
+
+                    $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User", $("#login").serialize())
+                    .done(function (data) {
+                        window.localStorage.setItem("userInfo", data);
+                        userInfo = data;
+
+                        $(this).hide();
+                        _login = true;
+
+                        _loadHome(userInfo);
+
+                        $.mobile.changePage('#home', { transition: 'flip' });
+                    })
+                    .fail(function (jqXHR, textStatus, errorThrown) {
+                        alert("Request failed: " + textStatus + "," + errorThrown);
+                    });
+
+                    callback(userInfo);
+                }, 'autenticando...', this);
             }
-            $(this).hide();
-            _login = true;
-            sapData.logOn($('#userName').val(), $('#pwd').val(), _handleLogOn);
+
+            //sapData.logOn($('#userName').val(), $('#pwd').val(), _handleLogOn);
             return false;
         });
 
@@ -91,6 +98,14 @@ sapForumApp.prototype = function () {
         if (!_login) {
             $.mobile.changePage("#logon", { transition: "flip" });
         }
+    },
+
+    _loadHome = function (userInfo)
+    {
+        fauxAjax(function () {
+            $('#ffname').text(userInfo.firstname);
+            $('#bestStand').text("Softtek");
+        }, 'carregando...', this);
     },
 
     _initagendaPage = function () {
@@ -125,6 +140,15 @@ sapForumApp.prototype = function () {
             _ffNum = ff;
             sapData.getDataforFF(_ffNum, _handleDataForFF);
         }
+    },
+
+    fauxAjax = function fauxAjax(func, text, thisObj) {
+        $.mobile.loading('show', { theme: 'a', textVisible: true, text: text });
+        window.setTimeout(function () {
+            $.mobile.loading('hide');
+            func();
+
+        }, 1000);
     },
 
     _handleDataForFF = function (data) {
