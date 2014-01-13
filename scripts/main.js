@@ -75,7 +75,6 @@ sapForumApp.prototype = function () {
                 }, 'autenticando...', this);
             }
 
-            //sapData.logOn($('#userName').val(), $('#pwd').val(), _handleLogOn);
             return false;
         });
 
@@ -103,6 +102,10 @@ sapForumApp.prototype = function () {
         fauxAjax(function () {
             $('#ffname').text(userInfo.firstname);
             $('#bestStand').text("Softtek");
+            if (window.localStorage.getItem("disclamer") === null)
+                $.mobile.changePage('#disclamer', { transition: 'flip' });
+            else
+                $.mobile.changePage('#home', { transition: 'flip' });
         }, 'carregando...', this);
     },
 
@@ -133,13 +136,6 @@ sapForumApp.prototype = function () {
 
     },
 
-    _handleLogOn = function (ff, success) {
-        if (success) {
-            _ffNum = ff;
-            sapData.getDataforFF(_ffNum, _handleDataForFF);
-        }
-    },
-
     fauxAjax = function fauxAjax(func, text, thisObj) {
         $.mobile.loading('show', { theme: 'a', textVisible: true, text: text });
         window.setTimeout(function () {
@@ -147,15 +143,6 @@ sapForumApp.prototype = function () {
             func();
 
         }, 1000);
-    },
-
-    _handleDataForFF = function (data) {
-        $('#labelpointsTotal').text("Gustavo Denis");
-        $('#bestStand').text("Softtek");
-        if (window.localStorage.getItem("disclamer") === null)
-            $.mobile.changePage('#disclamer', { transition: 'flip' });
-        else
-            $.mobile.changePage('#home', { transition: 'flip' });
     };
 
     return {
