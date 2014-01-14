@@ -126,7 +126,7 @@ sapForumApp.prototype = function () {
         fauxAjax(function () {
             $.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Stand")
             .done(function (data) {
-                for (var ln in data) {
+                for (var ln in data.value) {
                     $('#standLuluCombo').append("<option value=" + ln.idStand + ">" + ln.dsStand + "</option>");
                 }
             })
