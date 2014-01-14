@@ -14,7 +14,7 @@
     <script src="PushNotification.js" type="text/javascript" ></script>
     <script src="telephonenumber.js" type="text/javascript"></script>
     <script src="scripts/main.js" type="text/javascript"></script>
-    <script src="scripts/notification.js" type="text/javascript"></script>
+    <!--<script src="scripts/notification.js" type="text/javascript"></script>-->
     <script>
         $(function () {
             $.mobile.defaultHomeScroll = 0;
@@ -37,7 +37,7 @@
     <!-- Tablet 768x1024 High DPI (aka iPad3") -->
     <!--<link rel="stylesheet" media="only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-device-pixel-ratio:2)" href="styles/tablet-1024-hdpi.css" type="text/css" />-->
 </head>
-<body>
+<body onload="initNotification();">
 
     <!-- home page -->
     <div id="home" data-role="page" data-mini="true">
@@ -107,7 +107,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- pointsDetail page -->
     <div id="pointsDetail" data-role="page" data-add-back-btn="true">
         <div data-role="header" data-position="fixed" data-tap-toggle="false">
@@ -136,7 +136,7 @@
                     </div>
                 </li>
             </ul>
-            <p>Total de Pontos: <span id ="pointsDetail-totalpoints"></span></p>
+            <p>Total de Pontos: <span id="pointsDetail-totalpoints"></span></p>
         </div>
     </div>
 
@@ -192,6 +192,36 @@
     });
     var sapforum = new sapForumApp();
     sapforum.run();
-    appNotify.initialize();    
+    //appNotify.initialize();    
+
+    function initNotification() {
+        document.addEventListener("deviceready", initPushwoosh, true);
+    }
+
+    function initPushwoosh() {
+        var pushNotification = window.plugins.pushNotification;
+        pushNotification.onDeviceReady();
+
+        pushNotification.registerDevice({ projectid: "683239994824", appid: "F4C02-5215F" },
+            function (status) {
+                var pushToken = status;
+                alert('push token: ' + pushToken);
+            },
+            function (status) {
+                alert(JSON.stringify(['failed to register ', status]));
+            }
+        );
+
+        document.addEventListener('push-notification', function (event) {
+            var title = event.notification.title;
+            var userData = event.notification.userdata;
+
+            if (typeof (userData) != "undefined") {
+                alert('user data: ' + JSON.stringify(userData));
+            }
+
+            navigator.notification.alert(title);
+        });
+    }
 </script>
 
