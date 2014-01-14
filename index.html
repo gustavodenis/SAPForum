@@ -14,12 +14,6 @@
     <script src="PushNotification.js" type="text/javascript" ></script>
     <script src="telephonenumber.js" type="text/javascript"></script>
     <script src="scripts/main.js" type="text/javascript"></script>
-    <!--<script src="scripts/notification.js" type="text/javascript"></script>-->
-    <script>
-        $(function () {
-            $.mobile.defaultHomeScroll = 0;
-        });
-    </script>
     <!-- Default Stylesheet -->
     <link rel="stylesheet" href="styles/main.css" />
     <!-- Phone 320x480 High DPI (aka Retina) -->
@@ -186,13 +180,18 @@
 </html>
 
 <script>
+
     jQuery.support.cors = true;
     $.ajaxSetup({
         cache: false
     });
+
+    $(function () {
+        $.mobile.defaultHomeScroll = 0;
+    });
+
     var sapforum = new sapForumApp();
     sapforum.run();
-    //appNotify.initialize();    
 
     function initNotification() {
         var pushNotification = window.plugins.pushNotification;
