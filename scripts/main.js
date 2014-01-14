@@ -123,15 +123,28 @@ sapForumApp.prototype = function () {
     },
 
     _initluluPage = function () {
+        fauxAjax(function () {
+            $.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Stand")
+            .done(function (data) {
+                for (var ln in data) {
+                    $('#standLuluCombo').append("<option value=" + ln.idStand + ">" + ln.dsStand + "</option>");
+                }
+            })
+            .fail(function (jqxhr, textStatus, error) {
+                var err = textStatus + ", " + error;
+                alert("Request Failed: " + err);
+            });
+
+        }, 'carregando...', this);
+    },
+
+    _initlulurankPage = function () {
         var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
         telephoneNumber.get(function (result) {
             alert(result);
         }, function () {
             console.log("error");
         });
-    },
-
-    _initlulurankPage = function () {
     },
 
     fauxAjax = function fauxAjax(func, text, thisObj) {
