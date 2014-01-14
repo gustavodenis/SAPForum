@@ -36,7 +36,6 @@ sapForumApp.prototype = function () {
         $('#lulurankPage').on('pageshow', $.proxy(_initlulurankPage, that));
 
         if (window.localStorage.getItem("userInfo") != null) {
-            alert(window.localStorage.getItem("userInfo"));
             _login = true;
             _loadHome(window.localStorage.getItem("userInfo"));
             $.mobile.changePage('#home', { transition: 'flip' });
@@ -79,9 +78,11 @@ sapForumApp.prototype = function () {
 
         $('#savelulu').click(function () {
             fauxAjax(function () {
+                var iidUser = window.localStorage.getItem("userInfo").idUser;
                 $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User",
                     {
                         idStand: $('#standLuluCombo option:selected').val(),
+                        idUser: iidUser,
                         question1: $('#question1').val(),
                         question2: $('#question2').val(),
                         question3: $('#question3').val(),
@@ -138,7 +139,7 @@ sapForumApp.prototype = function () {
             $.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Stand")
             .done(function (data) {
                 for (var ln in data.value) {
-                    $('#standLuluCombo').append("<option value='" + ln.idStand + "'>" + ln.dsStand + "</option>");
+                    $('#standLuluCombo').append("<option value='" + data.value[ln].idStand + "'>" + data.value[ln].dsStand + "</option>");
                 }
             })
             .fail(function (jqxhr, textStatus, error) {
