@@ -11,7 +11,7 @@
     <script src="cordova.js" type="text/javascript"></script>
     <script src="barcodescanner.js" type="text/javascript"></script>
     <script src="childbrowser.js" type="text/javascript"></script>
-    <script src="PushNotification.js" type="text/javascript" ></script>
+    <script src="PushNotification.js" type="text/javascript"></script>
     <script src="telephonenumber.js" type="text/javascript"></script>
     <script src="scripts/main.js" type="text/javascript"></script>
     <!-- Default Stylesheet -->
@@ -168,6 +168,27 @@
                     <option value="0">Selecione...</option>
                 </select>
             </div>
+            <div class="ui-field-contain">
+                <label>
+                    <input type="checkbox" name="question1">Question 1
+                </label>
+                <label>
+                    <input type="checkbox" name="question2">Question 2
+                </label>
+                <label>
+                    <input type="checkbox" name="question3">Question 3
+                </label>
+                <label>
+                    <input type="checkbox" name="question4">Question 4
+                </label>
+                <label>
+                    <input type="checkbox" name="question5">Question 5
+                </label>
+                <label>
+                    <input type="checkbox" name="question6">Question 6
+                </label>
+            </div>
+            <p><a href="#" class="topcoat-button" id="savelulu" data-role="button" data-icon="star" data-transition="slide" data-theme="e">Salvar</a></p>
             <p><a href="#lulurankPage" class="topcoat-button" id="lulu" data-role="button" data-icon="star" data-transition="slide" data-theme="e">Ranking</a></p>
         </div>
     </div>
@@ -209,7 +230,7 @@
         //if (device.platform == "iPhone" || device.platform == "iOS") {
         //    document.addEventListener("deviceready", initPushwooshIOS, true);
         //    pushNotification.onDeviceReady();
-        //}        
+        //}
     }
 
     function initPushwooshAndroid() {

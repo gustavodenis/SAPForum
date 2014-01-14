@@ -57,7 +57,6 @@ sapForumApp.prototype = function () {
             if (window.localStorage.getItem("userInfo") === null) {
 
                 fauxAjax(function () {
-                    alert({ firstname: $('#firstname').val(), lastname: $('#lastname').val(), employer: $('#employer').val(), email: $('#email').val() });
                     $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User", 
                         { firstname: $('#firstname').val(), lastname: $('#lastname').val(), employer: $('#employer').val(), email: $('#email').val() })
                     .done(function (data) {
@@ -76,6 +75,28 @@ sapForumApp.prototype = function () {
             }
 
             return false;
+        });
+
+        $('#savelulu').click(function () {
+            fauxAjax(function () {
+                $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User",
+                    {
+                        idStand: $('#standLuluCombo option:selected').val(),
+                        question1: $('#question1').val(),
+                        question2: $('#question2').val(),
+                        question3: $('#question3').val(),
+                        question4: $('#question4').val(),
+                        question5: $('#question5').val(),
+                        question6: $('#question6').val()
+                    })
+                .done(function (data) {
+                    window.localStorage.setItem("luluOK", "true");
+                    $.mobile.changePage('#lulurankPage', { transition: 'flip' });
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    alert("Request failed: " + textStatus + "," + errorThrown);
+                });
+            }, 'gravando registros...', this);
         });
 
         $('#okdisclamer').click(function () {
@@ -110,16 +131,6 @@ sapForumApp.prototype = function () {
     },
 
     _initagendaPage = function () {
-        //$.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Login",
-        //    { name: "John", lastname:"Keep", email: "teste@teste.com.br", employer: "stk" })
-        //.done(function (json) {
-        //    idUsr = json.idUser
-        //    alert("JSON Data: " + idUsr);
-        //})
-        //.fail(function (jqxhr, textStatus, error) {
-        //    var err = textStatus + ", " + error;
-        //    alert("Request Failed: " + err);
-        //});
     },
 
     _initluluPage = function () {
@@ -127,7 +138,7 @@ sapForumApp.prototype = function () {
             $.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Stand")
             .done(function (data) {
                 for (var ln in data.value) {
-                    $('#standLuluCombo').append("<option value=" + ln.idStand + ">" + ln.dsStand + "</option>");
+                    $('#standLuluCombo').append("<option value='" + ln.idStand + "'>" + ln.dsStand + "</option>");
                 }
             })
             .fail(function (jqxhr, textStatus, error) {
