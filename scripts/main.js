@@ -90,7 +90,7 @@ sapForumApp.prototype = function () {
                     question5: ($('#question5').is(":checked") ? "1" : "0"),
                     question6: ($('#question6').is(":checked") ? "1" : "0")
                 };
-                //alert(JSON.stringify(luludata));
+                alert(JSON.stringify(luludata));
                 $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Lulu", luludata)
                 .done(function (data) {
                     window.localStorage.setItem("luluOK", "ok");
