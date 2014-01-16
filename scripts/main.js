@@ -80,6 +80,8 @@ sapForumApp.prototype = function () {
         $('#savelulu').click(function () {
             fauxAjax(function () {
                 var iidUser = JSON.parse(window.localStorage.getItem("userInfo")).idUser;
+                alert(window.localStorage.getItem("userInfo"));
+                alert(iidUser);
                 var luludata = {
                     idStand: $('#standLuluCombo option:selected').val(),
                     idUser: iidUser,
