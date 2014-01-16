@@ -80,8 +80,6 @@ sapForumApp.prototype = function () {
         $('#savelulu').click(function () {
             fauxAjax(function () {
                 var iidUser = JSON.parse(window.localStorage.getItem("userInfo")).idUser;
-                alert(window.localStorage.getItem("userInfo"));
-                alert(iidUser);
                 var luludata = {
                     idStand: $('#standLuluCombo option:selected').val(),
                     idUser: iidUser,
@@ -92,7 +90,6 @@ sapForumApp.prototype = function () {
                     question5: ($('#question5').is(":checked") ? "1" : "0"),
                     question6: ($('#question6').is(":checked") ? "1" : "0")
                 };
-                alert(JSON.stringify(luludata));
                 $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Lulu", luludata)
                 .done(function (data) {
                     window.localStorage.setItem("luluOK", "ok");
@@ -126,7 +123,6 @@ sapForumApp.prototype = function () {
     _loadHome = function (userInfo) {
         fauxAjax(function () {
             $('#ffname').text(userInfo.firstname);
-            $('#bestStand').text("Softtek");
             if (window.localStorage.getItem("disclamer") === null)
                 $.mobile.changePage('#disclamer', { transition: 'flip' });
             else
@@ -144,17 +140,22 @@ sapForumApp.prototype = function () {
     },
 
     _initluluPage = function () {
-        fauxAjax(function () {
-            $.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Stand")
-            .done(function (data) {
-                for (var ln in data.value) {
-                    $('#standLuluCombo').append("<option value='" + data.value[ln].idStand + "'>" + data.value[ln].dsStand + "</option>");
-                }
-            })
-            .fail(function (jqxhr, textStatus, error) {
-                alert("Request Failed: " + textStatus + ", " + error);
-            });
-        }, 'carregando...', this);
+        if (window.localStorage.getItem("luluOK") === null) {
+            fauxAjax(function () {
+                $.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Stand")
+                .done(function (data) {
+                    for (var ln in data.value) {
+                        $('#standLuluCombo').append("<option value='" + data.value[ln].idStand + "'>" + data.value[ln].dsStand + "</option>");
+                    }
+                })
+                .fail(function (jqxhr, textStatus, error) {
+                    alert("Request Failed: " + textStatus + ", " + error);
+                });
+            }, 'carregando...', this);
+        }
+        else {
+            alert('Obrigado! Mas seu voto já foi contabilizado.');
+        }
     },
 
     _initlulurankPage = function () {
@@ -169,6 +170,31 @@ sapForumApp.prototype = function () {
                 alert("Request Failed: " + textStatus + ", " + error);
             });
         }, 'carregando...', this);
+    },
+
+    _savePoints = function _savePoints(actionType) {
+        if (window.localStorage.getItem(actionType) === null) {
+            var iidUser = JSON.parse(window.localStorage.getItem("userInfo")).idUser;
+            var postdata = { idUser: iidUser, typeAction: actionType };
+            $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Point", postdata)
+            .done(function (data) {
+                window.localStorage.setItem(actionType, "ok");
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                alert("Save Points error: " + textStatus + "," + errorThrown);
+            });
+        }
+    },
+
+    _getPoints = function () {
+        var iidUser = JSON.parse(window.localStorage.getItem("userInfo")).idUser;
+        $.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Point(" + iidUser + ")")
+        .done(function (data) {
+            $('#labelpointsTotal').val(data.value.length);
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            alert("Get Points error: " + textStatus + ", " + error);
+        });
     },
 
     fauxAjax = function fauxAjax(func, text, thisObj) {
