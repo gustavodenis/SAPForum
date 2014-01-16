@@ -37,7 +37,7 @@ sapForumApp.prototype = function () {
 
         if (window.localStorage.getItem("userInfo") != null) {
             _login = true;
-            _loadHome(window.localStorage.getItem("userInfo"));
+            _loadHome(JSON.parse(window.localStorage.getItem("userInfo")));
             $.mobile.changePage('#home', { transition: 'flip' });
         }
 
@@ -56,10 +56,10 @@ sapForumApp.prototype = function () {
             if (window.localStorage.getItem("userInfo") === null) {
 
                 fauxAjax(function () {
-                    $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User", 
+                    $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User",
                         { firstname: $('#firstname').val(), lastname: $('#lastname').val(), employer: $('#employer').val(), email: $('#email').val() })
                     .done(function (data) {
-                        window.localStorage.setItem("userInfo", data);
+                        window.localStorage.setItem("userInfo", JSON.stringify(data));
                         _loadHome(data);
 
                         $(this).hide();
@@ -78,20 +78,21 @@ sapForumApp.prototype = function () {
 
         $('#savelulu').click(function () {
             fauxAjax(function () {
-                var iidUser = window.localStorage.getItem("userInfo").idUser;
-                $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User",
-                    {
-                        idStand: $('#standLuluCombo option:selected').val(),
-                        idUser: iidUser,
-                        question1: $('#question1').val(),
-                        question2: $('#question2').val(),
-                        question3: $('#question3').val(),
-                        question4: $('#question4').val(),
-                        question5: $('#question5').val(),
-                        question6: $('#question6').val()
-                    })
+                var iidUser = JSON.parse(window.localStorage.getItem("userInfo")).idUser;
+                var luludata = {
+                    idStand: $('#standLuluCombo option:selected').val(),
+                    idUser: iidUser,
+                    question1: ($('#question1').is(":checked") ? "1" : "0"),
+                    question2: ($('#question2').is(":checked") ? "1" : "0"),
+                    question3: ($('#question3').is(":checked") ? "1" : "0"),
+                    question4: ($('#question4').is(":checked") ? "1" : "0"),
+                    question5: ($('#question5').is(":checked") ? "1" : "0"),
+                    question6: ($('#question6').is(":checked") ? "1" : "0")
+                };
+                alert(JSON.stringify(luludata));
+                $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User", luludata)
                 .done(function (data) {
-                    window.localStorage.setItem("luluOK", "true");
+                    window.localStorage.setItem("luluOK", "ok");
                     $.mobile.changePage('#lulurankPage', { transition: 'flip' });
                 })
                 .fail(function (jqXHR, textStatus, errorThrown) {
@@ -119,8 +120,7 @@ sapForumApp.prototype = function () {
         }
     },
 
-    _loadHome = function (userInfo)
-    {
+    _loadHome = function (userInfo) {
         fauxAjax(function () {
             $('#ffname').text(userInfo.firstname);
             $('#bestStand').text("Softtek");
@@ -132,6 +132,12 @@ sapForumApp.prototype = function () {
     },
 
     _initagendaPage = function () {
+        var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
+        telephoneNumber.get(function (result) {
+            alert(result);
+        }, function () {
+            console.log("error");
+        });
     },
 
     _initluluPage = function () {
@@ -151,12 +157,20 @@ sapForumApp.prototype = function () {
     },
 
     _initlulurankPage = function () {
-        var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
-        telephoneNumber.get(function (result) {
-            alert(result);
-        }, function () {
-            console.log("error");
-        });
+        fauxAjax(function () {
+            $.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Lulu")
+            .done(function (data) {
+                $rankList = $('#myRankListView');
+                for (var i in data.value) {
+                    $rankList.append('<li id="' + data.value[ln].idStand + '"><span>' + data.value[ln].dsStand + '</span><span>' + data.value[ln].nrPoint + '</span></li>');
+                }
+            })
+            .fail(function (jqxhr, textStatus, error) {
+                var err = textStatus + ", " + error;
+                alert("Request Failed: " + err);
+            });
+
+        }, 'carregando...', this);
     },
 
     fauxAjax = function fauxAjax(func, text, thisObj) {
