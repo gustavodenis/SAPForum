@@ -90,8 +90,8 @@ sapForumApp.prototype = function () {
                     question5: ($('#question5').is(":checked") ? "1" : "0"),
                     question6: ($('#question6').is(":checked") ? "1" : "0")
                 };
-                alert(JSON.stringify(luludata));
-                $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User", luludata)
+                //alert(JSON.stringify(luludata));
+                $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Lulu", luludata)
                 .done(function (data) {
                     window.localStorage.setItem("luluOK", "ok");
                     $.mobile.changePage('#lulurankPage', { transition: 'flip' });
@@ -150,10 +150,8 @@ sapForumApp.prototype = function () {
                 }
             })
             .fail(function (jqxhr, textStatus, error) {
-                var err = textStatus + ", " + error;
-                alert("Request Failed: " + err);
+                alert("Request Failed: " + textStatus + ", " + error);
             });
-
         }, 'carregando...', this);
     },
 
@@ -161,8 +159,8 @@ sapForumApp.prototype = function () {
         fauxAjax(function () {
             $.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Lulu")
             .done(function (data) {
-                for (var i in data.value) {
-                    $('#myRankListView').append("<li id='" + data.value[ln].idStand + "'><span>" + data.value[ln].dsStand + "</span><span>" + data.value[ln].nrPoint + "</span></li>");
+                for (var ln in data.value) {
+                    $('#myRankListView').append("<li id='" + data.value[ln].idStand + "'>" + data.value[ln].dsStand + "(" + data.value[ln].nrPoint + ")</li>");
                 }
             })
             .fail(function (jqxhr, textStatus, error) {
