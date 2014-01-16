@@ -45,7 +45,7 @@ sapForumApp.prototype = function () {
             var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
             scanner.scan(function (result) {
-                alert(result.text);
+                _savePoints(result.text);
                 document.getElementById("info").innerHTML = result.text;
             }, function (error) {
                 console.log("Scanning failed: ", error);
