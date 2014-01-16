@@ -59,7 +59,8 @@ sapForumApp.prototype = function () {
                     $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User",
                         { firstname: $('#firstname').val(), lastname: $('#lastname').val(), employer: $('#employer').val(), email: $('#email').val() })
                     .done(function (data) {
-                        window.localStorage.setItem("userInfo", JSON.stringify(data));
+                        var usrdata = { idUser: data.idUser, firstname: data.firstname, lastname: data.lastname };
+                        window.localStorage.setItem("userInfo", JSON.stringify(usrdata));
                         _loadHome(data);
 
                         $(this).hide();
