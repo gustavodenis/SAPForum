@@ -61,7 +61,7 @@ body {
     right:0;
 }
 .info > .info-label {
-    color:#054251;
+    color:rgba(255,255,255,0.2);
     text-shadow: 0 1px 0 rgba(255,255,255,0.2);
     float:right;
     margin-right:10px;
@@ -74,7 +74,7 @@ body {
     color:#fff;
     text-shadow:none;
     padding:0.4em 1em;
-    background:rgba(0,0,0,0.15);
+    background:rgba(255,255,255,0.2);
     border-radius:1em;
     width:45%;
     display:inline;
