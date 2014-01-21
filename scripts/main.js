@@ -34,6 +34,7 @@ sapForumApp.prototype = function () {
         $('#agendaPage').on('pageshow', $.proxy(_initagendaPage, that));
         $('#luluPage').on('pageshow', $.proxy(_initluluPage, that));
         $('#lulurankPage').on('pageshow', $.proxy(_initlulurankPage, that));
+        $('#fulldata').on('pageshow', $.proxy(_initfulldataPage, that));
 
         if (window.localStorage.getItem("userInfo") != null) {
             _login = true;
@@ -75,6 +76,57 @@ sapForumApp.prototype = function () {
             }
 
             return false;
+        });
+
+        $('.fulldataBtn').click(function () {
+            fauxAjax(function () {
+                var iidUser = JSON.parse(window.localStorage.getItem("userInfo")).idUser;
+                $.ajax({
+                    type: "PUT",
+                    url: "http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User(" + iidUser + ")",
+                    data: {
+                        idUser: iidUser,
+                        firstname: $('#firstname').val(),
+                        lastname: $('#lastname').val(),
+                        employer: $('#employer').val(),
+                        email: $('#email').val(),
+                        position: $('#position').val(),
+                        city: $('#city').val(),
+                        state: $('#state  option:selected').val(),
+                        sector: $('#sector  option:selected').val(),
+                        billing: $('#billing  option:selected').val(),
+                        customerSAP: ($('#customerSAP').is(":checked") ? "1" : "0")
+                    },
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        _loadHome(data);
+                        $.mobile.changePage('#home', { transition: 'flip' });
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert(xhr.responseText);
+                    }
+                });
+            }, 'gravando...', this);
+        });
+
+        $('#okagenda').click(function () {
+            fauxAjax(function () {
+                var iidUser = JSON.parse(window.localStorage.getItem("userInfo")).idUser;
+                var agendadata = {
+                    idUser: iidUser,
+                    tel: $('#tel').val(),
+                    detail: $('#detail').val(),
+                    dtAgenda: $('#dtAgenda').val()
+                };
+                $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Agenda", agendadata)
+                .done(function (data) {
+                    window.localStorage.setItem("agenda", "ok");
+                    $.mobile.changePage('#home', { transition: 'flip' });
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    alert("Request failed: " + textStatus + "," + errorThrown);
+                });
+            }, 'gravando...', this);
         });
 
         $('#savelulu').click(function () {
@@ -120,6 +172,14 @@ sapForumApp.prototype = function () {
         }
     },
 
+    _initfulldataPage = function () {
+        var dataUser = JSON.parse(window.localStorage.getItem("userInfo"));
+        $('#firstname').val(dataUser.firstname);
+        $('#lastname').val(dataUser.lastname);
+        $('#employer').val(dataUser.employer);
+        $('#email').val(dataUser.email);
+    },
+
     _loadHome = function (userInfo) {
         fauxAjax(function () {
             $('#ffname').text(userInfo.firstname);
@@ -131,12 +191,21 @@ sapForumApp.prototype = function () {
     },
 
     _initagendaPage = function () {
-        var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
-        telephoneNumber.get(function (result) {
-            alert(result);
-        }, function () {
-            console.log("error");
-        });
+
+        if (window.localStorage.getItem("agenda") === null)
+            $.mobile.changePage('#agendaPage', { transition: 'flip' });
+        else
+        {
+            alert('Obrigado por já ter marcado uma agenda!');
+            $.mobile.changePage('#home', { transition: 'flip' });
+        }
+
+        //var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
+        //telephoneNumber.get(function (result) {
+        //    alert(result);
+        //}, function () {
+        //    console.log("error");
+        //});
     },
 
     _initluluPage = function () {

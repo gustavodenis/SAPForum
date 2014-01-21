@@ -83,6 +83,84 @@
         </div>
     </div>
 
+    <!-- FULL Data page -->
+    <div id="fulldata" data-role="page" data-mini="true">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <h1>Cadastro Completo</h1>
+        </div>
+        <div data-role="content">
+            <form id="fulldataform">
+                Nome:
+                <input type="text" id="firstname" value="" />
+                Sobrenome:
+                <input type="text" id="lastname" value="" />
+                Empresa:
+                <input type="text" id="employer" value="" />
+                Cargo:
+                <input type="text" id="position" value="@" />
+                City:
+                <input type="text" id="city" value="@" />
+                State:
+                <select id="state">
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espirito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="PR">Paraná</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="TO">Tocantins</option>
+                </select>
+                Setor:
+                <select id="sector">
+                    <option value="Agronegócio">Agronegócio</option>
+                    <option value="Bens de Consumo">Bens de Consumo</option>
+                    <option value="Engenharia e Construção">Engenharia e Construção</option>
+                    <option value="Financeiro">Financeiro</option>
+                    <option value="Governo">Governo</option>
+                    <option value="Manufatura">Manufatura</option>
+                    <option value="Óleo e Gás">Óleo e Gás</option>
+                    <option value="Serviços">Serviços</option>
+                    <option value="Tecnologia da Informação">Tecnologia da Informação</option>
+                    <option value="Utilities">Utilities</option>
+                    <option value="Varejo">Varejo</option>
+                    <option value="Outro">Outro</option>
+
+                </select>
+                Faturamento:
+                <select id="billing">
+                    <option value="1">R$ 10 a R$ 50 MM</option>
+                    <option value="2">R$ 51 a R$ 100 MM</option>
+                    <option value="3">R$ 101 a R$ 500 MM</option>
+                    <option value="4">Acima de R$ 50 MM</option>
+                </select>
+                <label>
+                    <input type="checkbox" id="customerSAP" name="customerSAP">É Cliente SAP?
+                </label>
+                <input type="submit" class="fulldataBtn" value="Gravar" data-icon="star" data-theme="a" />
+            </form>
+        </div>
+    </div>
+
     <!-- disclamer page -->
     <div id="disclamer" data-role="page">
         <div data-role="header" data-position="fixed" data-tap-toggle="false">
@@ -90,9 +168,10 @@
         </div>
         <div data-role="content">
             <div id="disclamerContainer">
-                bla bla bla
-
-                <a id="okdisclamer" data-role="button" href="#home" data-icon="star" data-transition="slide" data-theme="a">Ok, Vamos lá!</a>
+                <p>Bem-vindo ao Aplicativo da Softtek para o SAP Forum 2014!</p>
+                <p>Com este aplicativo você terá acesso à programação da Softtek no evento, poderá participar de nossas atividades, receber informações, acumular pontos e concorrer a um <b>tablet!</b></p>
+                <p>Para somar pontos, registre os códigos QR disponíveis nos materiais e atividades da Softtek e acompanhe o seu desempenho na página “Meus pontos”. Quanto mais você participar, mais chance terá de ganhar!</p>
+                <p><a id="okdisclamer" data-role="button" href="#home" data-icon="star" data-transition="slide" data-theme="a">Ok, Vamos lá!</a></p>
             </div>
         </div>
     </div>
@@ -163,6 +242,16 @@
             <a data-role="button" href="#home" class="ui-btn-right">Home</a>
         </div>
         <div data-role="content">
+            <p>Para marcar uma visita ou solicitar o contato de um dos nossos consultores, por favor, preencha os campos a seguir:</p>
+            <p>
+                Telefone comercial:
+                <input type="text" id="tel" value="" />
+                Qual a sua necessidade?
+                <input type="text" id="detail" value="" />
+                Alguma sugestão de data?
+                <input type="date" id="dtAgenda" value="" />
+            </p>
+            <p><a id="okAgenda" data-role="button" href="#home" data-icon="star" data-transition="slide" data-theme="a">Ok, Vamos agendar!</a></p>
         </div>
     </div>
 
