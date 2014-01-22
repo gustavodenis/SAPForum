@@ -60,7 +60,7 @@ sapForumApp.prototype = function () {
                     $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User",
                         { firstname: $('#firstname').val(), lastname: $('#lastname').val(), employer: $('#employer').val(), email: $('#email').val() })
                     .done(function (data) {
-                        var usrdata = { idUser: data.idUser, firstname: data.firstname, lastname: data.lastname };
+                        var usrdata = { idUser: data.idUser, firstname: data.firstname, lastname: data.lastname, email: data.email, employer: data.employer };
                         window.localStorage.setItem("userInfo", JSON.stringify(usrdata));
                         _loadHome(data);
 
@@ -196,8 +196,8 @@ sapForumApp.prototype = function () {
             $.mobile.changePage('#agendaPage', { transition: 'flip' });
         else
         {
-            alert('Obrigado por já ter marcado uma agenda!');
             $.mobile.changePage('#home', { transition: 'flip' });
+            alert('Obrigado por já ter marcado uma agenda!');            
         }
 
         //var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
@@ -223,6 +223,7 @@ sapForumApp.prototype = function () {
             }, 'carregando...', this);
         }
         else {
+            $.mobile.changePage('#home', { transition: 'flip' });
             alert('Obrigado! Mas seu voto já foi contabilizado.');
         }
     },
