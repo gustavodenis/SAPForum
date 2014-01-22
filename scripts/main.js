@@ -23,6 +23,7 @@ var sapForumApp = function () { }
 
 sapForumApp.prototype = function () {
 
+    var userPoints = {};
     var _login = false,
 
     run = function () {
@@ -47,7 +48,6 @@ sapForumApp.prototype = function () {
 
             scanner.scan(function (result) {
                 _savePoints(result.text);
-                document.getElementById("info").innerHTML = result.text;
             }, function (error) {
                 console.log("Scanning failed: ", error);
             });
@@ -155,11 +155,70 @@ sapForumApp.prototype = function () {
     },
 
     _initpointsDetail = function () {
-        checkConnection();
+        $('#pointsDetail-cadastro, #pointsDetail-completo, #pointsDetail-infosession, #pointsDetail-stand, #pointsDetail-5info').text('');
+        $('#pointsDetail-lulu, #pointsDetail-agenda,#pointsDetail-demo,#pointsDetail-totalpoints').text('');
+
+        var cadastro = 0,
+            completo = 0,
+            infosession = 0,
+            stand = 0,
+            fiveinfo = 0,
+            lulu = 0,
+            agenda = 0,
+            demo = 0,
+            total = 0,
+            data = JSON.parse(userPoints);
+
+        for (var i in data.value) {
+            switch (data.value[i].typeAction) {
+                case 'Cadastro':
+                    cadastro = 5;
+                    total = total + 5;
+                    break;
+                case 'Dados Completo':
+                    completo = 10;
+                    total = total + 10;
+                    break;
+                case 'InfoSession':
+                    infosession = 15;
+                    total = total + 15;
+                    break;
+                case 'Stand':
+                    stand = 10;
+                    total = total + 10;
+                    break;
+                case 'FirstInfoSession':
+                    fiveinfo = 25;
+                    total = total + 25;
+                    break;
+                case 'Quiz':
+                    lulu += 15;
+                    total = total + 15;
+                    break;
+                case 'Agendamento de Visita':
+                    agenda = 25;
+                    total = total + 25;
+                    break;
+                case 'Demo':
+                    demo = 15;
+                    total = total + 15;
+                    break;
+            }
+        }
+
+        $('#pointsDetail-cadastro').text(cadastro);
+        $('#pointsDetail-completo').text(completo);
+        $('#pointsDetail-infosession').text(infosession);
+        $('#pointsDetail-stand').text(stand);
+        $('#pointsDetail-5info').text(fiveinfo);
+        $('#pointsDetail-lulu').text(lulu);
+        $('#pointsDetail-agenda').text(agenda);
+        $('#pointsDetail-demo').text(demo);
+        $('#pointsDetail-totalpoints').text(total);
     },
 
     _initinfoSession = function () {
-        $('#dataAgenda').text("14/02/2014");
+        $('#dataAgenda').text("14/02/2014 08:00:00");
     },
 
     _initHome = function () {
@@ -255,6 +314,7 @@ sapForumApp.prototype = function () {
         var iidUser = JSON.parse(window.localStorage.getItem("userInfo")).idUser;
         $.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Point(" + iidUser + ")")
         .done(function (data) {
+            userPoints = JSON.stringify(data);
             $('#labelpointsTotal').val(data.value.length);
         })
         .fail(function (jqxhr, textStatus, error) {

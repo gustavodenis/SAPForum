@@ -4,8 +4,6 @@
     <title></title>
     <meta charset="UTF-8" />
     <link href="jquery-mobile/jquery.mobile-1.4.0.min.css" rel="stylesheet" type="text/css" />
-    <!-- uncoment viewport meta tag, if targeting Android 4.x.x devices -->
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <script src="jquery-mobile/jquery-1.9.1.min.js" type="text/javascript"></script>
     <script src="jquery-mobile/jquery.mobile-1.4.0.min.js" type="text/javascript"></script>
     <script src="cordova.js" type="text/javascript"></script>
@@ -22,14 +20,8 @@
     <link rel="stylesheet" media="only screen and (min-device-width: 320px) and (max-device-width: 508px) and (-webkit-device-pixel-ratio:1.5)" href="styles/phone-800.css" type="text/css" />
     <!-- Tablet 768x1024 Low DPI (aka iPad 1 & 2") -->
     <link rel="stylesheet" media="only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-device-pixel-ratio:1)" href="styles/tablet-1024-ldpi.css" type="text/css" />
-    <!-- Tablet 800x1280 Low DPI (aka Samsung Galaxy Tab 8.9" & Lenovo K1) -->
-    <!--<link rel="stylesheet" media="only screen and (min-device-width: 800px) and (max-device-width: 1280px) and (-webkit-device-pixel-ratio:1)" href="styles/tablet-1280.css" type="text/css" />-->
     <!-- Phone 720x1280 High DPI (aka Google Nexus) -->
     <link rel="stylesheet" media="only screen and (min-device-width: 720px) and (max-device-width: 1280px) and (-webkit-device-pixel-ratio:2)" href="styles/phone-1280.css" type="text/css" />
-    <!-- Tablet 500x1024 Low DPI (aka Kindle Fire) -->
-    <!--<link rel="stylesheet" media="only screen and (min-device-width: 600px) and (max-device-width: 1024px) and (-webkit-device-pixel-ratio:1)" href="styles/tablet-600-1024.css" type="text/css" />-->
-    <!-- Tablet 768x1024 High DPI (aka iPad3") -->
-    <!--<link rel="stylesheet" media="only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-device-pixel-ratio:2)" href="styles/tablet-1024-hdpi.css" type="text/css" />-->
 </head>
 <body onload="initNotification();">
 
@@ -53,14 +45,12 @@
             <div class="clear"></div>
         </div>
         <div data-role="content">
-            <span id="mainContent"></span>
             <p><a href="#pointsDetail" class="topcoat-button" id="points" data-role="button" data-icon="star" data-transition="slide" data-theme="e">Meus Pontos</a></p>
             <p><button id="scanQR" class="ui-btn ui-icon-star ui-btn-icon-left">Marcar Pontos</button></p>
             <p><a href="#infoSession" class="topcoat-button" id="infosession" data-role="button" data-icon="star" data-transition="slide" data-theme="e">Palestra</a></p>
             <p><a href="#agendaPage" class="topcoat-button" id="agenda" data-role="button" data-icon="star" data-transition="slide" data-theme="e">Agende uma visita</a></p>
             <p><a href="#luluPage" class="topcoat-button" id="lulu" data-role="button" data-icon="star" data-transition="slide" data-theme="e">Stand Lulu</a></p>
             <p><a href="#fulldataPage" class="topcoat-button" id="fulldata" data-role="button" data-icon="star" data-transition="slide" data-theme="e">Cadastro Completo</a></p>
-            <p id="info"></p>
         </div>
     </div>
 
@@ -147,7 +137,6 @@
                     <option value="Utilities">Utilities</option>
                     <option value="Varejo">Varejo</option>
                     <option value="Outro">Outro</option>
-
                 </select>
                 Faturamento:
                 <select id="billing">
@@ -159,7 +148,9 @@
                 <label>
                     <input type="checkbox" id="customerSAP" name="customerSAP">É Cliente SAP?
                 </label>
-                <input type="submit" class="fulldataBtn" value="Gravar" data-icon="star" data-theme="a" />
+                <p>
+                    <input type="submit" class="fulldataBtn" value="Gravar" data-icon="star" data-theme="a" />
+                </p>
             </form>
         </div>
     </div>
@@ -186,43 +177,53 @@
             <a data-role="button" href="#home" class="ui-btn-right">Home</a>
         </div>
         <div data-role="content">
-            <ul data-role="listview" id="pointsDetailList" data-inset="true" data-theme="d">
-                <li class="center-wrapper" data-role="list-divider">
-                    <span id="pointsDetail-title"></span>
-                </li>
-                <li>
-                    <div class="ui-grid-a">
-                        <div class="ui-block-a">Cadastro</div>
-                        <div class="ui-block-b">
-                            <span id="pointsDetail-cadastro"></span>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="ui-grid-a">
-                        <div class="ui-block-a">Agendamento de Visita</div>
-                        <div class="ui-block-b">
-                            <span id="pointsDetail-agenda"></span>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="ui-grid-a">
-                        <div class="ui-block-a">Palestra</div>
-                        <div class="ui-block-b">
-                            <span id="pointsDetail-infosession"></span>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="ui-grid-a">
-                        <div class="ui-block-a">Visita no Stand</div>
-                        <div class="ui-block-b">
-                            <span id="pointsDetail-stand"></span>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+            <div class="ui-grid-b">
+                <div class="ui-block-a">Ações</div>
+                <div class="ui-block-b">Pontos</div>
+                <div class="ui-block-c">Meus Pontos</div>
+            </div>
+            <div class="ui-grid-b">
+                <div class="ui-block-a">Cadastro/Login</div>
+                <div class="ui-block-b">5</div>
+                <div class="ui-block-c">
+                    <span id="pointsDetail-cadastro"></span>
+                </div>
+                <div class="ui-block-a">Cadastro Completo</div>
+                <div class="ui-block-b">10</div>
+                <div class="ui-block-c">
+                    <span id="pointsDetail-completo"></span>
+                </div>
+                <div class="ui-block-a">Info Session Mobilidade</div>
+                <div class="ui-block-b">15</div>
+                <div class="ui-block-c">
+                    <span id="pointsDetail-infosession"></span>
+                </div>
+                <div class="ui-block-a">Visita no Stand Softtek</div>
+                <div class="ui-block-b">10</div>
+                <div class="ui-block-c">
+                    <span id="pointsDetail-stand"></span>
+                </div>
+                <div class="ui-block-a">5 primeiros a chegar na Info Session</div>
+                <div class="ui-block-b">25</div>
+                <div class="ui-block-c">
+                    <span id="pointsDetail-5info"></span>
+                </div>
+                <div class="ui-block-a">Participar da demonstração SAP</div>
+                <div class="ui-block-b">15</div>
+                <div class="ui-block-c">
+                    <span id="pointsDetail-demo"></span>
+                </div>
+                <div class="ui-block-a">Preencher o Quiz Softtek</div>
+                <div class="ui-block-b">15</div>
+                <div class="ui-block-c">
+                    <span id="pointsDetail-lulu"></span>
+                </div>
+                <div class="ui-block-a">Agendar uma visita</div>
+                <div class="ui-block-b">25</div>
+                <div class="ui-block-c">
+                    <span id="pointsDetail-agenda"></span>
+                </div>
+            </div>
             <p>Total de Pontos: <span id="pointsDetail-totalpoints"></span></p>
         </div>
     </div>
@@ -261,7 +262,7 @@
     <!--Lulu page-->
     <div id="luluPage" data-role="page" data-add-back-btn="true">
         <div data-role="header" data-position="fixed" data-tap-toggle="false">
-            <h1>Lulu de Stand</h1>
+            <h1>Quiz</h1>
             <a data-role="button" href="#home" class="ui-btn-right">Home</a>
         </div>
         <div data-role="content">

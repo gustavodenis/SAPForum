@@ -87,8 +87,8 @@ body {
 .ice-logo {
 	content:url("../images/stklogo.png");
     margin-top: 7px;
-    width:196px;
-    height:100px;
+    width:100px;
+    height:51px;
 }
 .clear {
     clear:both;
