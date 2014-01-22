@@ -34,7 +34,7 @@ sapForumApp.prototype = function () {
         $('#agendaPage').on('pageshow', $.proxy(_initagendaPage, that));
         $('#luluPage').on('pageshow', $.proxy(_initluluPage, that));
         $('#lulurankPage').on('pageshow', $.proxy(_initlulurankPage, that));
-        $('#fulldata').on('pageshow', $.proxy(_initfulldataPage, that));
+        $('#fulldataPage').on('pageshow', $.proxy(_initfulldataPage, that));
 
         if (window.localStorage.getItem("userInfo") != null) {
             _login = true;
@@ -86,10 +86,10 @@ sapForumApp.prototype = function () {
                     url: "http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User(" + iidUser + ")",
                     data: {
                         idUser: iidUser,
-                        firstname: $('#firstname').val(),
-                        lastname: $('#lastname').val(),
-                        employer: $('#employer').val(),
-                        email: $('#email').val(),
+                        firstname: $('#tfirstname').val(),
+                        lastname: $('#tlastname').val(),
+                        employer: $('#temployer').val(),
+                        email: $('#temail').val(),
                         position: $('#position').val(),
                         city: $('#city').val(),
                         state: $('#state  option:selected').val(),
@@ -174,10 +174,10 @@ sapForumApp.prototype = function () {
 
     _initfulldataPage = function () {
         var dataUser = JSON.parse(window.localStorage.getItem("userInfo"));
-        $('#firstname').val(dataUser.firstname);
-        $('#lastname').val(dataUser.lastname);
-        $('#employer').val(dataUser.employer);
-        $('#email').val(dataUser.email);
+        $('#tfirstname').val(dataUser.firstname);
+        $('#tlastname').val(dataUser.lastname);
+        $('#temployer').val(dataUser.employer);
+        $('#temail').val(dataUser.email);
     },
 
     _loadHome = function (userInfo) {
