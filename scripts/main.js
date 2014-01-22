@@ -81,30 +81,26 @@ sapForumApp.prototype = function () {
         $('.fulldataBtn').click(function () {
             fauxAjax(function () {
                 var iidUser = JSON.parse(window.localStorage.getItem("userInfo")).idUser;
-                $.ajax({
-                    type: "PUT",
-                    url: "http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User(" + iidUser + ")",
-                    data: {
-                        idUser: iidUser,
-                        firstname: $('#tfirstname').val(),
-                        lastname: $('#tlastname').val(),
-                        employer: $('#temployer').val(),
-                        email: $('#temail').val(),
-                        position: $('#position').val(),
-                        city: $('#city').val(),
-                        state: $('#state  option:selected').val(),
-                        sector: $('#sector  option:selected').val(),
-                        billing: $('#billing  option:selected').val(),
-                        customerSAP: ($('#customerSAP').is(":checked") ? "1" : "0")
-                    },
-                    contentType: "application/json; charset=utf-8",
-                    success: function (result) {
-                        _loadHome(data);
-                        $.mobile.changePage('#home', { transition: 'flip' });
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
-                        alert(xhr.responseText);
-                    }
+                var dataUser = {
+                    idUser: iidUser,
+                    firstname: $('#tfirstname').val(),
+                    lastname: $('#tlastname').val(),
+                    employer: $('#temployer').val(),
+                    email: $('#temail').val(),
+                    position: $('#position').val(),
+                    city: $('#city').val(),
+                    state: $('#state  option:selected').val(),
+                    sector: $('#sector  option:selected').val(),
+                    billing: $('#billing  option:selected').val(),
+                    customerSAP: ($('#customerSAP').is(":checked") ? "1" : "0")
+                }
+                $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User", dataUser)
+                 .done(function (data) {
+                     _loadHome(data);
+                     $.mobile.changePage('#home', { transition: 'flip' });
+                 })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    alert("Request failed: " + textStatus + "," + errorThrown);
                 });
             }, 'gravando...', this);
         });
@@ -194,10 +190,9 @@ sapForumApp.prototype = function () {
 
         if (window.localStorage.getItem("agenda") === null)
             $.mobile.changePage('#agendaPage', { transition: 'flip' });
-        else
-        {
+        else {
             $.mobile.changePage('#home', { transition: 'flip' });
-            alert('Obrigado por já ter marcado uma agenda!');            
+            alert('Obrigado por já ter marcado uma agenda!');
         }
 
         //var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
