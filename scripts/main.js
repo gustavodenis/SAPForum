@@ -30,7 +30,7 @@ sapForumApp.prototype = function () {
 
         var that = this;
         $('#home').on('pagebeforecreate', $.proxy(_initHome, that));
-        $('#pointsDetail').on('pagebeforeshow', $.proxy(_initpointsDetail, that));
+        $('#pointsDetail').on('pageshow', $.proxy(_initpointsDetail, that));
         $('#infoSession').on('pageshow', $.proxy(_initinfoSession, that));
         $('#agendaPage').on('pageshow', $.proxy(_initagendaPage, that));
         $('#luluPage').on('pageshow', $.proxy(_initluluPage, that));
@@ -158,63 +158,73 @@ sapForumApp.prototype = function () {
         $('#pointsDetail-cadastro, #pointsDetail-completo, #pointsDetail-infosession, #pointsDetail-stand, #pointsDetail-5info').text('');
         $('#pointsDetail-lulu, #pointsDetail-agenda,#pointsDetail-demo,#pointsDetail-totalpoints').text('');
 
-        var cadastro = 0,
-            completo = 0,
-            infosession = 0,
-            stand = 0,
-            fiveinfo = 0,
-            lulu = 0,
-            agenda = 0,
-            demo = 0,
-            total = 0,
-            data = JSON.parse(userPoints);
+        fauxAjax(function () {
+            var iidUser = JSON.parse(window.localStorage.getItem("userInfo")).idUser;
+            $.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Point(" + iidUser + ")")
+            .done(function (data) {
+                var cadastro = 0,
+                    completo = 0,
+                    infosession = 0,
+                    stand = 0,
+                    fiveinfo = 0,
+                    lulu = 0,
+                    agenda = 0,
+                    demo = 0,
+                    total = 0;
 
-        for (var i in data.value) {
-            switch (data.value[i].typeAction) {
-                case 'Cadastro':
-                    cadastro = 5;
-                    total = total + 5;
-                    break;
-                case 'Dados Completo':
-                    completo = 10;
-                    total = total + 10;
-                    break;
-                case 'InfoSession':
-                    infosession = 15;
-                    total = total + 15;
-                    break;
-                case 'Stand':
-                    stand = 10;
-                    total = total + 10;
-                    break;
-                case 'FirstInfoSession':
-                    fiveinfo = 25;
-                    total = total + 25;
-                    break;
-                case 'Quiz':
-                    lulu += 15;
-                    total = total + 15;
-                    break;
-                case 'Agendamento de Visita':
-                    agenda = 25;
-                    total = total + 25;
-                    break;
-                case 'Demo':
-                    demo = 15;
-                    total = total + 15;
-                    break;
-            }
-        }
+                for (var i in data.value) {
+                    switch (data.value[i].typeAction) {
+                        case 'Cadastro':
+                            cadastro = 5;
+                            total = total + 5;
+                            break;
+                        case 'Dados Completo':
+                            completo = 10;
+                            total = total + 10;
+                            break;
+                        case 'InfoSession':
+                            infosession = 15;
+                            total = total + 15;
+                            break;
+                        case 'Stand':
+                            stand = 10;
+                            total = total + 10;
+                            break;
+                        case 'FirstInfoSession':
+                            fiveinfo = 25;
+                            total = total + 25;
+                            break;
+                        case 'Quiz':
+                            lulu += 15;
+                            total = total + 15;
+                            break;
+                        case 'Agendamento de Visita':
+                            agenda = 25;
+                            total = total + 25;
+                            break;
+                        case 'Demo':
+                            demo = 15;
+                            total = total + 15;
+                            break;
+                    }
+                }
 
-        $('#pointsDetail-cadastro').text(cadastro);
-        $('#pointsDetail-completo').text(completo);
-        $('#pointsDetail-infosession').text(infosession);
-        $('#pointsDetail-stand').text(stand);
-        $('#pointsDetail-5info').text(fiveinfo);
-        $('#pointsDetail-lulu').text(lulu);
-        $('#pointsDetail-agenda').text(agenda);
-        $('#pointsDetail-demo').text(demo);
-        $('#pointsDetail-totalpoints').text(total);
+                $('#pointsDetail-cadastro').text(cadastro);
+                $('#pointsDetail-completo').text(completo);
+                $('#pointsDetail-infosession').text(infosession);
+                $('#pointsDetail-stand').text(stand);
+                $('#pointsDetail-5info').text(fiveinfo);
+                $('#pointsDetail-lulu').text(lulu);
+                $('#pointsDetail-agenda').text(agenda);
+                $('#pointsDetail-demo').text(demo);
+                $('#pointsDetail-totalpoints').text(total);
+            })
+            .fail(function (jqxhr, textStatus, error) {
+                alert("Get Points error: " + textStatus + ", " + error);
+            });
+        }, 'carregando...', this);
+
+
     },
 
     _initinfoSession = function () {
@@ -308,18 +318,6 @@ sapForumApp.prototype = function () {
                 alert("Save Points error: " + textStatus + "," + errorThrown);
             });
         }
-    },
-
-    _getPoints = function () {
-        var iidUser = JSON.parse(window.localStorage.getItem("userInfo")).idUser;
-        $.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Point(" + iidUser + ")")
-        .done(function (data) {
-            userPoints = JSON.stringify(data);
-            $('#labelpointsTotal').val(data.value.length);
-        })
-        .fail(function (jqxhr, textStatus, error) {
-            alert("Get Points error: " + textStatus + ", " + error);
-        });
     },
 
     fauxAjax = function fauxAjax(func, text, thisObj) {
