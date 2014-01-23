@@ -289,8 +289,13 @@ sapForumApp.prototype = function () {
         fauxAjax(function () {
             $.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/api/Lulu")
             .done(function (data) {
+                var q = 1;
                 for (var ln in data) {
-                    $('#myRankListView').append("<li id='" + data[ln].idStand + "'>" + data[ln].dsStand + "(" + data[ln].nrPoint + ")</li>");
+                    if (q == 1)
+                        $('#myRankListView').append("<li id='" + data[ln].idStand + "'><img src='images/trofeu.png'><h2>Vencedor!</h2><p>" + data[ln].dsStand + "(" + data[ln].nrPoint + ")</p></li>");
+                    else
+                        $('#myRankListView').append("<li id='" + data[ln].idStand + "'><img src='images/trofeu2.png'><p>" + data[ln].dsStand + "(" + data[ln].nrPoint + ")</li>");
+                    q++;
                 }
             })
             .fail(function (jqxhr, textStatus, error) {
