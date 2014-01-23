@@ -263,13 +263,6 @@ sapForumApp.prototype = function () {
             $.mobile.changePage('#home', { transition: 'flip' });
             alert('Obrigado por já ter marcado uma agenda!');
         }
-
-        //var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
-        //telephoneNumber.get(function (result) {
-        //    alert(result);
-        //}, function () {
-        //    console.log("error");
-        //});
     },
 
     _initluluPage = function () {

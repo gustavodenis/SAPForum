@@ -46,18 +46,18 @@
   </author>
 
   <feature name="http://api.phonegap.com/1.0/network"/>
-  <feature name="http://api.phonegap.com/1.0/device" />
-  <feature name="debug-server" required="true">
+  <!--<feature name="http://api.phonegap.com/1.0/device" />-->
+  <!--<feature name="debug-server" required="true">
     <param name="domain" value="http://debug.phonegap.com"/>
     <param name="key" value="willoughby"/>
-  </feature>
+  </feature>-->
   <feature name="PushNotification">
     <param name="ios-package" value="PushNotification" />
   </feature>
   <plugin name="PushNotification" value="PushNotification" />
   <gap:plugin name="com.phonegap.plugins.barcodescanner"/>
   <gap:plugin name="com.pushwoosh.plugins.pushwoosh"/>
-  <gap:plugin name="com.simonmacdonald.telephonenumber" />
+  <!--<gap:plugin name="com.simonmacdonald.telephonenumber" />-->
   <gap:platform name="ios" />
   <gap:platform name="android" />
 
