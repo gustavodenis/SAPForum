@@ -138,7 +138,7 @@ sapForumApp.prototype = function () {
                     question5: ($('#question5').is(":checked") ? "1" : "0"),
                     question6: ($('#question6').is(":checked") ? "1" : "0")
                 };
-                $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Lulu", luludata)
+                $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/api/Lulu", luludata)
                 .done(function (data) {
                     window.localStorage.setItem("luluOK", "ok");
                     $.mobile.changePage('#lulurankPage', { transition: 'flip' });
@@ -294,10 +294,10 @@ sapForumApp.prototype = function () {
 
     _initlulurankPage = function () {
         fauxAjax(function () {
-            $.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Lulu")
+            $.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/api/Lulu")
             .done(function (data) {
-                for (var ln in data.value) {
-                    $('#myRankListView').append("<li id='" + data.value[ln].idStand + "'>" + data.value[ln].dsStand + "(" + data.value[ln].nrPoint + ")</li>");
+                for (var ln in data) {
+                    $('#myRankListView').append("<li id='" + data[ln].idStand + "'>" + data[ln].dsStand + "(" + data[ln].nrPoint + ")</li>");
                 }
             })
             .fail(function (jqxhr, textStatus, error) {
