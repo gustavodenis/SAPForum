@@ -150,7 +150,8 @@ sapForumApp.prototype = function () {
         });
 
         $('#okdisclamer').click(function () {
-            window.localStorage.setItem("disclamer", "ok");
+            if ($('#notDisclamer').is(":checked"))
+                window.localStorage.setItem("disclamer", "ok");
         });
     },
 
