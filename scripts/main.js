@@ -224,8 +224,6 @@ sapForumApp.prototype = function () {
                 alert("Get Points error: " + textStatus + ", " + error);
             });
         }, 'carregando...', this);
-
-
     },
 
     _initinfoSession = function () {
@@ -293,9 +291,9 @@ sapForumApp.prototype = function () {
                 var q = 1;
                 for (var ln in data) {
                     if (q == 1)
-                        $('#myRankListView').append("<li id='" + data[ln].idStand + "'><img src='images/trofeu.png'><h2>Vencedor!</h2><p>" + data[ln].dsStand + "(" + data[ln].nrPoint + ")</p></li>");
+                        $('#myRankListView').append("<li class='ui-li-has-thumb' id='" + data[ln].idStand + "'><a href='#' class='ui-btn ui-icon-carat-r'><img src='images/trofeu.png'><p>" + data[ln].dsStand + "</p></a></li>");
                     else
-                        $('#myRankListView').append("<li id='" + data[ln].idStand + "'><img src='images/trofeu2.png'><p>" + data[ln].dsStand + "(" + data[ln].nrPoint + ")</li>");
+                        $('#myRankListView').append("<li class='ui-li-has-thumb' id='" + data[ln].idStand + "'><a href='#' class='ui-btn ui-icon-carat-r'><img src='images/trofeu2.png'><p>" + data[ln].dsStand + "</p></a></li>");
                     q++;
                 }
             })
