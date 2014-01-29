@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:gap   = "http://phonegap.com/ns/1.0"
-    id          = "2ZZS35U92H.com.softtek.sapforum"
-    versionCode = "10"
+    id          = "com.softtek.sapforum"
     version     = "1.0.0" >
 
   <name>SAP Forum</name>
+
+  <description>
+    Mobile Application for SAP Forum by Softtek
+  </description>
+
+  <author href="http://www.softtek.com" email="gustavo.denis@softtek.com">
+    Gustavo Denis
+  </author>
 
   <preference name="phonegap-version" value="3.1.0" />
   <preference name="orientation"                value="default" />
@@ -37,27 +44,14 @@
   <preference name="android-installLocation"    value="auto" />
   <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
 
-  <description>
-    Mobile Application for SAP Forum by Softtek
-  </description>
-
-  <author href="https://build.phonegap.com" email="gustavo.denis@softtek.com">
-    Gustavo Denis - Softtek
-  </author>
-
   <feature name="http://api.phonegap.com/1.0/network"/>
-  <!--<feature name="http://api.phonegap.com/1.0/device" />-->
-  <!--<feature name="debug-server" required="true">
-    <param name="domain" value="http://debug.phonegap.com"/>
-    <param name="key" value="willoughby"/>
-  </feature>-->
   <feature name="PushNotification">
     <param name="ios-package" value="PushNotification" />
   </feature>
   <plugin name="PushNotification" value="PushNotification" />
   <gap:plugin name="com.phonegap.plugins.barcodescanner"/>
   <gap:plugin name="com.pushwoosh.plugins.pushwoosh"/>
-  <!--<gap:plugin name="com.simonmacdonald.telephonenumber" />-->
+  
   <gap:platform name="ios" />
   <gap:platform name="android" />
   <gap:platform name="winphone" />

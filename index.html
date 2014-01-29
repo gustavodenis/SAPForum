@@ -3,17 +3,16 @@
 <head>
     <title></title>
     <meta charset="UTF-8" />
-    <link href="jquery-mobile/jquery.mobile-1.4.0.min.css" rel="stylesheet" type="text/css" />
     <script src="jquery-mobile/jquery-1.9.1.min.js" type="text/javascript"></script>
     <script src="jquery-mobile/jquery.mobile-1.4.0.min.js" type="text/javascript"></script>
     <script src="cordova.js" type="text/javascript"></script>
     <script src="barcodescanner.js" type="text/javascript"></script>
     <script src="childbrowser.js" type="text/javascript"></script>
     <script src="PushNotification.js" type="text/javascript"></script>
-    <script src="telephonenumber.js" type="text/javascript"></script>
     <script src="scripts/main.js" type="text/javascript"></script>
     <!-- Default Stylesheet -->
-    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="jquery-mobile/jquery.mobile-1.4.0.min.css" type="text/css" />
+    <link rel="stylesheet" href="styles/main.css" type="text/css" />
     <!-- Phone 320x480 High DPI (aka Retina) -->
     <link rel="stylesheet" media="only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio:2)" href="styles/phone-480.css" type="text/css" />
     <!-- Phone 480x800 Medium DPI (aka Samsung Galaxy S II Skyrocket) -->
@@ -27,7 +26,7 @@
 
     <!-- home page -->
     <div id="home" data-role="page" data-mini="true">
-        <div data-role="header" data-position="fixed" data-tap-toggle=false">
+        <div data-role="header" data-position="fixed" style="display:none;" data-tap-toggle="false">
             <h1>Olá <span id="ffname"></span>!</h1>
         </div>
         <div class="logo-splash">
