@@ -60,6 +60,7 @@
   <!--<gap:plugin name="com.simonmacdonald.telephonenumber" />-->
   <gap:platform name="ios" />
   <gap:platform name="android" />
+  <gap:platform name="winphone" />
 
   <icon src="images/icon.png" />
   <icon src="App_Resources/Android/drawable-ldpi/icon.png"          gap:platform="android" gap:density="ldpi" />
@@ -70,6 +71,8 @@
   <icon src="App_Resources/iOS/icon-72.png"                         gap:platform="ios"     width="72" height="72" />
   <icon src="App_Resources/iOS/icon-Small-50@2x.png"                gap:platform="ios"     width="110" height="110" />
   <icon src="App_Resources/iOS/icon-72@2x.png"                      gap:platform="ios"     width="144" height="144" />
+  <icon src="App_Resources/winphone/icon.png"                       gap:platform="winphone" />
+  <icon src="App_Resources/winphone/tileicon.png"                   gap:platform="winphone" gap:role="background" />
   <gap:splash src="App_Resources/Android/drawable-ldpi/splash.png"  gap:platform="android" gap:density="ldpi" />
   <gap:splash src="App_Resources/Android/drawable-mdpi/splash.png"  gap:platform="android" gap:density="mdpi" />
   <gap:splash src="App_Resources/Android/drawable-hdpi/splash.png"  gap:platform="android" gap:density="hdpi" />
@@ -78,6 +81,7 @@
   <gap:splash src="App_Resources/iOS/Default-Portrait@2x.png"       gap:platform="ios"     width="640" height="960" />
   <gap:splash src="App_Resources/iOS/Default-Landscape.png"         gap:platform="ios"     width="768" height="1024" />
   <gap:splash src="App_Resources/iOS/Default-Landscape.png"         gap:platform="ios"     width="1024" height="768" />
+  <gap:splash src="App_Resources/winphone/splash.png"               gap:platform="winphone" />
 
   <access origin="*" />
   <access origin="*.pushwoosh.com" />
