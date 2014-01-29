@@ -70,10 +70,10 @@
   <icon src="App_Resources/iOS/icon-72.png"                         gap:platform="ios"     width="72" height="72" />
   <icon src="App_Resources/iOS/icon-Small-50@2x.png"                gap:platform="ios"     width="110" height="110" />
   <icon src="App_Resources/iOS/icon-72@2x.png"                      gap:platform="ios"     width="144" height="144" />
-  <gap:splash src="App_Resources/Android/drawable-ldpi/screen.png"  gap:platform="android" gap:density="ldpi" />
-  <gap:splash src="App_Resources/Android/drawable-mdpi/screen.png"  gap:platform="android" gap:density="mdpi" />
-  <gap:splash src="App_Resources/Android/drawable-hdpi/screen.png"  gap:platform="android" gap:density="hdpi" />
-  <gap:splash src="App_Resources/Android/drawable-xhdpi/screen.png" gap:platform="android" gap:density="xhdpi" />
+  <gap:splash src="App_Resources/Android/drawable-ldpi/splash.png"  gap:platform="android" gap:density="ldpi" />
+  <gap:splash src="App_Resources/Android/drawable-mdpi/splash.png"  gap:platform="android" gap:density="mdpi" />
+  <gap:splash src="App_Resources/Android/drawable-hdpi/splash.png"  gap:platform="android" gap:density="hdpi" />
+  <gap:splash src="App_Resources/Android/drawable-xhdpi/splash.png" gap:platform="android" gap:density="xhdpi" />
   <gap:splash src="App_Resources/iOS/Default-Portrait.png"          gap:platform="ios"     width="320" height="480" />
   <gap:splash src="App_Resources/iOS/Default-Portrait@2x.png"       gap:platform="ios"     width="640" height="960" />
   <gap:splash src="App_Resources/iOS/Default-Landscape.png"         gap:platform="ios"     width="768" height="1024" />

@@ -322,7 +322,7 @@ sapForumApp.prototype = function () {
         window.setTimeout(function () {
             $.mobile.loading('hide');
             func();
-        }, 1000);
+        }, 2000);
     };
 
     return {
