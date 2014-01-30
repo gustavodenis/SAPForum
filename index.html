@@ -26,30 +26,28 @@
 
     <!-- home page -->
     <div id="home" data-role="page" data-mini="true">
-        <div data-role="header" data-position="fixed" style="display:none;" data-tap-toggle="false">
-            <h1>Olá <span id="ffname"></span>!</h1>
-        </div>
         <div class="logo-splash">
             <img class="logo-splash" src="images/logo-splash.png" width="45%" height="45%">
         </div>
         <div data-role="content" class="navigation-icons">
             <a href="#fulldataPage" id="fulldata" data-transition="slide" class="nav-icon icon-red cadastro-nav"></a>
-            <a href="#infoSession" id="infosession" data-transition="slide" class="nav-icon icon-blue about-nav"></a>
-            <a href="#agendaPage" id="agenda" data-transition="slide" class="nav-icon icon-magenta blog-nav"></a>
+            <a href="#infoSession" id="infosession" data-transition="slideup" class="nav-icon icon-blue about-nav"></a>
+            <a href="#agendaPage" id="agenda" data-transition="slidedown" class="nav-icon icon-magenta blog-nav"></a>
             <a href="#" id="scanQR" data-transition="slide" class="nav-icon icon-dblue folio-nav"></a>
-            <a href="#pointsDetail" id="points" data-transition="slide" class="nav-icon icon-green video-nav"></a>
-            <a href="#luluPage" id="lulu" data-transition="slide" class="nav-icon icon-yellow mail-nav"></a>
+            <a href="#pointsDetail" id="points" data-transition="pop" class="nav-icon icon-green video-nav"></a>
+            <a href="#luluPage" id="lulu" data-transition="fade" class="nav-icon icon-yellow mail-nav"></a>
         </div>
         <div>
-            <img class="navigation-icons" src="images/logo_rodape2.png" width="45%" height="45%">
             <p class="landing-copyright copyright">SOFTTEK COPYRIGHT 2014. </BR>ALL RIGHTS RESERVED</p>
         </div>
     </div>
 
     <!-- logon page -->
     <div id="logon" data-role="page" data-mini="true">
-        <div data-role="header" data-position="fixed" data-tap-toggle="false">
-            <h1>Login</h1>
+        <div data-role="header" data-theme="a" data-position="fixed" data-tap-toggle="false">
+            <div class="header-text">
+                <img class="logo" alt="img" src="images/logo.png" width="240">
+            </div>
         </div>
         <div data-role="content">
             <form id="login">
@@ -68,8 +66,10 @@
 
     <!-- FULL Data page -->
     <div id="fulldataPage" data-role="page" data-mini="true">
-        <div data-role="header" data-position="fixed" data-tap-toggle="false">
-            <h1>Cadastro Completo</h1>
+        <div data-role="header" data-theme="a" data-position="fixed" data-tap-toggle="false">
+            <div class="header-text">
+                <img class="logo" alt="img" src="images/logo.png" width="240">
+            </div>
         </div>
         <div data-role="content">
             <form id="fulldataform">
@@ -87,6 +87,7 @@
                 <input type="text" id="city" value="" />
                 State:
                 <select id="state">
+                    <option value="0" selected="selected">Selecione...</option>
                     <option value="AC">Acre</option>
                     <option value="AL">Alagoas</option>
                     <option value="AM">Amazonas</option>
@@ -117,6 +118,7 @@
                 </select>
                 Setor:
                 <select id="sector">
+                    <option value="0" selected="selected">Selecione...</option>
                     <option value="Agronegócio">Agronegócio</option>
                     <option value="Bens de Consumo">Bens de Consumo</option>
                     <option value="Engenharia e Construção">Engenharia e Construção</option>
@@ -132,6 +134,7 @@
                 </select>
                 Faturamento:
                 <select id="billing">
+                    <option value="0" selected="selected">Selecione...</option>
                     <option value="1">R$ 10 a R$ 50 MM</option>
                     <option value="2">R$ 51 a R$ 100 MM</option>
                     <option value="3">R$ 101 a R$ 500 MM</option>
@@ -149,10 +152,19 @@
 
     <!-- disclamer page -->
     <div id="disclamer" data-role="page">
-        <div data-role="header" data-position="fixed" data-tap-toggle="false">
-            <h1>Aviso</h1>
+        <div data-role="header" data-theme="a" data-position="fixed" data-tap-toggle="false">
+            <div class="header-text">
+                <img class="logo" alt="img" src="images/logo.png" width="240">
+            </div>
         </div>
         <div data-role="content">
+            <div class="heading">
+                <div class="heading-left">
+                    <em>entenda um pouco</em>
+                    <h3>Aviso</h3>
+                </div>
+            </div>
+            <div class="decoration"></div>
             <div id="disclamerContainer">
                 <p>Bem-vindo ao Aplicativo da Softtek para o SAP Forum 2014!</p>
                 <p>Com este aplicativo você terá acesso à programação da Softtek no evento, poderá participar de nossas atividades, receber informações, acumular pontos e concorrer a um <b>tablet!</b></p>
@@ -167,11 +179,20 @@
 
     <!-- pointsDetail page -->
     <div id="pointsDetail" data-role="page" data-add-back-btn="true">
-        <div data-role="header" data-position="fixed" data-tap-toggle="false">
-            <h1>Pontos</h1>
-            <a data-role="button" href="#home" class="ui-btn-right">Home</a>
+        <div data-role="header" data-position="fixed" data-theme="a" data-tap-toggle="false">
+            <div class="header-text">
+                <img class="logo" alt="img" src="images/logo.png" width="240">
+            </div>
+            <a class="logo-home" href="#home"><img src="images/logob.png" alt="img" width="40"></a>
         </div>
         <div data-role="content">
+            <div class="heading">
+                <div class="heading-left">
+                    <em>sua pontuação</em>
+                    <h3>Pontos</h3>
+                </div>
+            </div>
+            <div class="decoration"></div>
             <div class="ui-grid-b">
                 <div class="ui-block-a">Ações</div>
                 <div class="ui-block-b">Pontos</div>
@@ -225,22 +246,40 @@
 
     <!--infoSession page-->
     <div id="infoSession" data-role="page" data-add-back-btn="true">
-        <div data-role="header" data-position="fixed" data-tap-toggle="false">
-            <h1>Palestra</h1>
-            <a data-role="button" href="#home" class="ui-btn-right">Home</a>
+        <div data-role="header" data-theme="a" data-position="fixed" data-tap-toggle="false">
+            <div class="header-text">
+                <img class="logo" alt="img" src="images/logo.png" width="240">
+            </div>
+            <a class="logo-home" href="#home"><img src="images/logob.png" alt="img" width="40"></a>
         </div>
         <div data-role="content">
+            <div class="heading">
+                <div class="heading-left">
+                    <em>mais detalhes</em>
+                    <h3>Palestra</h3>
+                </div>
+            </div>
+            <div class="decoration"></div>
             <span id="dataAgenda"></span>
         </div>
     </div>
 
     <!--agenda page-->
     <div id="agendaPage" data-role="page" data-add-back-btn="true">
-        <div data-role="header" data-position="fixed" data-tap-toggle="false">
-            <h1>Agendamento de Visita</h1>
-            <a data-role="button" href="#home" class="ui-btn-right">Home</a>
+        <div data-role="header" data-theme="a" data-position="fixed" data-tap-toggle="false">
+            <div class="header-text">
+                <img class="logo" alt="img" src="images/logo.png" width="240">
+            </div>
+            <a class="logo-home" href="#home"><img src="images/logob.png" alt="img" width="40"></a>
         </div>
         <div data-role="content">
+            <div class="heading">
+                <div class="heading-left">
+                    <em>faça um pré-agendamento</em>
+                    <h3>Visita</h3>
+                </div>
+            </div>
+            <div class="decoration"></div>
             <p>Para marcar uma visita ou solicitar o contato de um dos nossos consultores, por favor, preencha os campos a seguir:</p>
             <p>
                 Telefone comercial:
@@ -256,15 +295,24 @@
 
     <!--Lulu page-->
     <div id="luluPage" data-role="page" data-add-back-btn="true">
-        <div data-role="header" data-position="fixed" data-tap-toggle="false">
-            <h1>Quiz</h1>
-            <a data-role="button" href="#home" class="ui-btn-right">Home</a>
+        <div data-role="header" data-theme="a" data-position="fixed" data-tap-toggle="false">
+            <div class="header-text">
+                <img class="logo" alt="img" src="images/logo.png" width="240">
+            </div>
+            <a class="logo-home" href="#home"><img src="images/logob.png" alt="img" width="40"></a>
         </div>
         <div data-role="content">
+            <div class="heading">
+                <div class="heading-left">
+                    <em>vamos falar do evento</em>
+                    <h3>Quiz</h3>
+                </div>
+            </div>
+            <div class="decoration"></div>
             <div class="ui-field-contain">
                 <label for="standLulu">Stand:</label>
                 <select name="standLulu" id="standLuluCombo">
-                    <option value="0">Selecione...</option>
+                    <option value="0" selected="selected">Selecione...</option>
                 </select>
             </div>
             <div class="ui-field-contain">
@@ -293,11 +341,20 @@
 
     <!--Lulu Rank page-->
     <div id="lulurankPage" data-role="page" data-add-back-btn="true">
-        <div data-role="header" data-position="fixed" data-tap-toggle="false">
-            <h1>Stands Mais Votados!</h1>
-            <a data-role="button" href="#home" class="ui-btn-right">Home</a>
+        <div data-role="header" data-theme="a" data-position="fixed" data-tap-toggle="false">
+            <div class="header-text">
+                <img class="logo" alt="img" src="images/logo.png" width="240">
+            </div>
+            <a class="logo-home" href="#home"><img src="images/logob.png" alt="img" width="40"></a>
         </div>
         <div data-role="content">
+            <div class="heading">
+                <div class="heading-left">
+                    <em>vamos comemorar</em>
+                    <h3>Mais Votados!</h3>
+                </div>
+            </div>
+            <div class="decoration"></div>
             <ul data-role="listview" id="myRankListView" data-theme="b" data-divider-theme="a" class="ui-listview ui-corner-all ui-shadow"></ul>
         </div>
     </div>
@@ -320,16 +377,16 @@
 
     function initNotification() {
         var pushNotification = window.plugins.pushNotification;
-        document.addEventListener("deviceready", initPushwooshAndroid, true);
-        //if (device.platform == "Android") {
-        //    document.addEventListener("deviceready", initPushwooshAndroid, true);
-        //    pushNotification.onDeviceReady();
-        //}
+        //document.addEventListener("deviceready", initPushwooshAndroid, true);
+        if (device.platform == "Android") {
+            document.addEventListener("deviceready", initPushwooshAndroid, true);
+            pushNotification.onDeviceReady();
+        }
 
-        //if (device.platform == "iPhone" || device.platform == "iOS") {
-        //    document.addEventListener("deviceready", initPushwooshIOS, true);
-        //    pushNotification.onDeviceReady();
-        //}
+        if (device.platform == "iPhone" || device.platform == "iOS") {
+            document.addEventListener("deviceready", initPushwooshIOS, true);
+            pushNotification.onDeviceReady();
+        }
     }
 
     function initPushwooshAndroid() {
