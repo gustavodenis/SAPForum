@@ -63,6 +63,7 @@
   <icon src="App_Resources/Android/drawable-hdpi/icon.png"          gap:platform="android"  gap:density="hdpi" />
   <icon src="App_Resources/Android/drawable-xhdpi/icon.png"         gap:platform="android"  gap:density="xhdpi" />
   <icon src="App_Resources/iOS/icon-Small-50.png"                   gap:platform="ios"      width="50" height="50" />
+  <icon src="App_Resources/iOS/icon-Small-57.png"                   gap:platform="ios"      width="57" height="57" />
   <icon src="App_Resources/iOS/icon-72.png"                         gap:platform="ios"      width="72" height="72" />
   <icon src="App_Resources/iOS/icon-Small-50@2x.png"                gap:platform="ios"      width="110" height="110" />
   <icon src="App_Resources/iOS/icon-72@2x.png"                      gap:platform="ios"      width="144" height="144" />
