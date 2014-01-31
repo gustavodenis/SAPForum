@@ -4,10 +4,10 @@
     id          = "com.softtek.sapforum"
     version     = "1.0.0" >
 
-  <name>SAP Forum</name>
+  <name>Softtek Eventos 2014</name>
 
   <description>
-    Mobile Application for SAP Forum by Softtek
+    Aplicação Mobile da Softtek para o Evento SAP Forum
   </description>
 
   <author href="http://www.softtek.com" email="gustavo.denis@softtek.com">

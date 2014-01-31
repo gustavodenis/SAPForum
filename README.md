@@ -1,4 +1,4 @@
 SAPForum
 ========
 
-Softtek SAP Forum
+Aplicação Mobile da Softtek para o Evento SAP Forum
