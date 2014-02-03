@@ -145,12 +145,13 @@ body {
     height: 70px;
 }
 
-
 .logo-home {
     margin-left: 10px;
     margin-top: 15px;
     margin-bottom: 15px;
     float: left;
+    border-style: none;
+    background-color:transparent;
 }
 
 .header-text {
@@ -343,7 +344,6 @@ body {
 .ui-content .ui-listview-inset {
     margin: 1em 5px;
 }
-
 .ui-btn-active {
     border: 1px solid rgba(255,255,255,0.2);
     background: rgba(255,255,255,0.2);
