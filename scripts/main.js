@@ -389,12 +389,13 @@ sapForumApp.prototype = function () {
     },
 
     _savePoints = function _savePoints(actionType) {
-        if (window.localStorage.getItem(actionType) === null) {
+        if (actionType != '' && window.localStorage.getItem(actionType) === null) {
             var iidUser = JSON.parse(window.localStorage.getItem("userInfo")).idUser;
             var postdata = { idUser: iidUser, typeAction: actionType };
             $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Point", postdata)
             .done(function (data) {
                 window.localStorage.setItem(actionType, "ok");
+                alert("Pontuação salva!");
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
                 alert("Save Points error: " + textStatus + "," + errorThrown);
