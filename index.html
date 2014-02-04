@@ -69,6 +69,7 @@
             <div class="header-text">
                 <img class="logo" alt="img" src="images/logo.png" width="240">
             </div>
+            <a href="#home" data-rel="back" style="margin-left: 10px; margin-top: 15px; margin-bottom: 15px; float: left;" class="ui-btn-left ui-btn ui-icon-home ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button" role="button">Home</a>
         </div>
         <div data-role="content">
             <form id="fulldataform">
@@ -193,9 +194,9 @@
             </div>
             <div class="decoration"></div>
             <div class="ui-grid-b">
-                <div class="ui-block-a">Ações</div>
-                <div class="ui-block-b">Pontos</div>
-                <div class="ui-block-c">Meus Pontos</div>
+                <div class="ui-block-a"><div class="ui-bar ui-bar-a">Ações</div></div>
+                <div class="ui-block-b"><div class="ui-bar ui-bar-a">Pontos</div></div>
+                <div class="ui-block-c"><div class="ui-bar ui-bar-a">Meus Pontos</div></div>
             </div>
             <div class="ui-grid-b">
                 <div class="ui-block-a">Cadastro/Login</div>
@@ -376,7 +377,6 @@
 
     function initNotification() {
         var pushNotification = window.plugins.pushNotification;
-        //document.addEventListener("deviceready", initPushwooshAndroid, true);
         if (device.platform == "Android") {
             document.addEventListener("deviceready", initPushwooshAndroid, true);
             pushNotification.onDeviceReady();
@@ -392,10 +392,9 @@
         var pushNotification = window.plugins.pushNotification;
         pushNotification.onDeviceReady();
 
-        pushNotification.registerDevice({ projectid: "683239994824", appid: "F4C02-5215F" },
+        pushNotification.registerDevice({ projectid: "463416607530", appid: "F4C02-5215F" },
             function (status) {
                 var pushToken = status;
-                //alert('push token: ' + pushToken);
             },
             function (status) {
                 alert(JSON.stringify(['failed to register ', status]));
@@ -418,10 +417,9 @@
         var pushNotification = window.plugins.pushNotification;
         pushNotification.onDeviceReady();
 
-        pushNotification.registerDevice({ alert: true, badge: true, sound: true, pw_appid: "F4C02-5215F", appname: "SAPForum" },
+        pushNotification.registerDevice({ alert: true, badge: true, sound: true, pw_appid: "F4C02-5215F", appname: "Softtek Eventos 2014" },
             function (status) {
                 var deviceToken = status['deviceToken'];
-                alert('registerDevice: ' + deviceToken);
             },
             function (status) {
                 alert('failed to register : ' + JSON.stringify(status));
