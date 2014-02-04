@@ -71,8 +71,8 @@ sapForumApp.prototype = function () {
                     erro += '- Empresa\n';
                 if ($('#email').val() == '')
                     erro += '- Email';
-                if (IsEmail($('#email').val()))
-                    erro += '- Email inválido\n';
+                //if (IsEmail($('#email').val()))
+                //    erro += '- Email inválido\n';
 
                 if (erro.length > 0) {
                     alert('Erros encontrados: ' + erro);
@@ -112,8 +112,8 @@ sapForumApp.prototype = function () {
                 erro += '- Empresa\n';
             if ($('#temail').val() == '')
                 erro += '- Email\n';
-            if (IsEmail($('#temail').val()))
-                erro += '- Email inválido\n';
+            //if (IsEmail($('#temail').val()))
+            //    erro += '- Email inválido\n';
             if ($('#position').val() == '')
                 erro += '- Cargo\n';
             if ($('#city').val() == '')
