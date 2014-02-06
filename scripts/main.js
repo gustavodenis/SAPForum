@@ -208,7 +208,7 @@ sapForumApp.prototype = function () {
                         question3: ($('#question3').is(":checked") ? "1" : "0"),
                         question4: ($('#question4').is(":checked") ? "1" : "0"),
                         question5: ($('#question5').is(":checked") ? "1" : "0"),
-                        question6: ($('#question6').is(":checked") ? "1" : "0")
+                        question6: "0"
                     };
                     $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/api/Lulu", luludata)
                     .done(function (data) {
@@ -343,11 +343,11 @@ sapForumApp.prototype = function () {
 
     _initluluPage = function () {
         if (window.localStorage.getItem("luluOK") === null) {
-            _LoadLuluCombo;
+            _LoadLuluCombo();
         }
         else {
             if (confirm('Deseja avaliar outro stand?'))
-                _LoadLuluCombo;
+                _LoadLuluCombo();
             else
                 $.mobile.changePage('#lulurankPage', { transition: 'flip' });
         }
@@ -356,17 +356,158 @@ sapForumApp.prototype = function () {
     _LoadLuluCombo = function () {
         $('#standLuluCombo').empty();
         $('#standLuluCombo').append("<option value='0' selected='selected'>Selecione...</option>");
-        fauxAjax(function () {
-            $.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Stand")
-            .done(function (data) {
-                for (var ln in data.value) {
-                    $('#standLuluCombo').append("<option value='" + data.value[ln].idStand + "'>" + data.value[ln].dsStand + "</option>");
-                }
-            })
-            .fail(function (jqxhr, textStatus, error) {
-                alert("Request Failed: " + textStatus + ", " + error);
-            });
-        }, 'carregando...', this);
+
+        var lululist = {
+            "odata.metadata": "http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/$metadata#Stand", "value": [
+              {
+                  "idStand": 30, "dsStand": "Softtek"
+              }, {
+                  "idStand": 31, "dsStand": "Uol Diveo"
+              }, {
+                  "idStand": 32, "dsStand": "Sonda"
+              }, {
+                  "idStand": 33, "dsStand": "Computer Associates"
+              }, {
+                  "idStand": 34, "dsStand": "T-Systems"
+              }, {
+                  "idStand": 35, "dsStand": "Deloitte"
+              }, {
+                  "idStand": 36, "dsStand": "IBM"
+              }, {
+                  "idStand": 37, "dsStand": "pwc"
+              }, {
+                  "idStand": 38, "dsStand": "Cisco"
+              }, {
+                  "idStand": 39, "dsStand": "CSC"
+              }, {
+                  "idStand": 40, "dsStand": "Algar Tech"
+              }, {
+                  "idStand": 41, "dsStand": "HP / Intel"
+              }, {
+                  "idStand": 42, "dsStand": "Capgemini"
+              }, {
+                  "idStand": 43, "dsStand": "Bradesco"
+              }, {
+                  "idStand": 44, "dsStand": "American Express"
+              }, {
+                  "idStand": 45, "dsStand": "Sigga"
+              }, {
+                  "idStand": 46, "dsStand": "Neoris"
+              }, {
+                  "idStand": 47, "dsStand": "Indra"
+              }, {
+                  "idStand": 48, "dsStand": "FH"
+              }, {
+                  "idStand": 49, "dsStand": "Pelissari"
+              }, {
+                  "idStand": 50, "dsStand": "Resource"
+              }, {
+                  "idStand": 51, "dsStand": "Tivit"
+              }, {
+                  "idStand": 52, "dsStand": "Thomson Reuters"
+              }, {
+                  "idStand": 53, "dsStand": "its Group"
+              }, {
+                  "idStand": 54, "dsStand": "Synchro"
+              }, {
+                  "idStand": 55, "dsStand": "Thera"
+              }, {
+                  "idStand": 56, "dsStand": "megawork"
+              }, {
+                  "idStand": 57, "dsStand": "Vistex"
+              }, {
+                  "idStand": 58, "dsStand": "ENGdb"
+              }, {
+                  "idStand": 59, "dsStand": "essence"
+              }, {
+                  "idStand": 60, "dsStand": "Grupo Meta"
+              }, {
+                  "idStand": 61, "dsStand": "nsi"
+              }, {
+                  "idStand": 62, "dsStand": "first decision"
+              }, {
+                  "idStand": 63, "dsStand": "Asug"
+              }, {
+                  "idStand": 64, "dsStand": "Esperansap"
+              }, {
+                  "idStand": 65, "dsStand": "gA"
+              }, {
+                  "idStand": 66, "dsStand": "ITeam"
+              }, {
+                  "idStand": 67, "dsStand": "Runge Pincock Minarco"
+              }, {
+                  "idStand": 68, "dsStand": "Hitachi"
+              }, {
+                  "idStand": 69, "dsStand": "OI"
+              }, {
+                  "idStand": 70, "dsStand": "SEP"
+              }, {
+                  "idStand": 71, "dsStand": "Intelligenza"
+              }, {
+                  "idStand": 72, "dsStand": "LKM"
+              }, {
+                  "idStand": 73, "dsStand": "WinShuttle"
+              }, {
+                  "idStand": 74, "dsStand": "Extend"
+              }, {
+                  "idStand": 75, "dsStand": "Hybris Software"
+              }, {
+                  "idStand": 76, "dsStand": "SSI"
+              }, {
+                  "idStand": 77, "dsStand": "NMS"
+              }, {
+                  "idStand": 78, "dsStand": "Ramo"
+              }, {
+                  "idStand": 79, "dsStand": "ebs"
+              }, {
+                  "idStand": 80, "dsStand": "superabiz"
+              }, {
+                  "idStand": 81, "dsStand": "exxis"
+              }, {
+                  "idStand": 82, "dsStand": "HB Brasil"
+              }, {
+                  "idStand": 83, "dsStand": "Ipj"
+              }, {
+                  "idStand": 84, "dsStand": "training"
+              }, {
+                  "idStand": 85, "dsStand": "Ti Fontoura"
+              }, {
+                  "idStand": 86, "dsStand": "gplux"
+              }, {
+                  "idStand": 87, "dsStand": "KNOA"
+              }, {
+                  "idStand": 88, "dsStand": "Carta Capital"
+              }, {
+                  "idStand": 89, "dsStand": "Canal Energia"
+              }, {
+                  "idStand": 90, "dsStand": "Radio Bandeirantes"
+              }, {
+                  "idStand": 91, "dsStand": "Jornal Casa"
+              }, {
+                  "idStand": 92, "dsStand": "ANEFAC"
+              }, {
+                  "idStand": 93, "dsStand": "MJV"
+              }, {
+                  "idStand": 94, "dsStand": "GOL"
+              }
+            ]
+        };
+
+        for (var ln in lululist.value) {
+            $('#standLuluCombo').append("<option value='" + lululist.value[ln].idStand + "'>" + lululist.value[ln].dsStand + "</option>");
+        }
+
+        //fauxAjax(function () {
+        //    $.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Stand")
+        //    .done(function (data) {
+        //        for (var ln in data.value) {
+        //            $('#standLuluCombo').append("<option value='" + data.value[ln].idStand + "'>" + data.value[ln].dsStand + "</option>");
+        //        }
+        //    })
+        //    .fail(function (jqxhr, textStatus, error) {
+        //        alert("Request Failed: " + textStatus + ", " + error);
+        //    });
+        //}, 'carregando...', this);
     },
 
     _initlulurankPage = function () {
