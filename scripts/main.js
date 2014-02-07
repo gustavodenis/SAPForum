@@ -178,8 +178,9 @@ sapForumApp.prototype = function () {
                     };
                     $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Agenda", agendadata)
                     .done(function (data) {
+                        alert('Agenda salva com suscesso!');
                         window.localStorage.setItem("agenda", "ok");
-                        $.mobile.changePage('#home', { transition: 'flip' });
+                        $.mobile.changePage('#home', { transition: 'flip' });                        
                     })
                     .fail(function (jqXHR, textStatus, errorThrown) {
                         alert("Request failed: " + textStatus + "," + errorThrown);
@@ -348,7 +349,7 @@ sapForumApp.prototype = function () {
             if (confirm('Deseja avaliar outro stand?'))
                 _LoadLuluCombo();
             else
-                $.mobile.changePage('#lulurankPage', { transition: 'flip' });
+                $.mobile.changePage('#home', { transition: 'flip' });
         }
 
         $('select').selectmenu('refresh', true);
@@ -513,7 +514,7 @@ sapForumApp.prototype = function () {
     },
 
     _initlulurankPage = function () {
-        $('#myRankListView').empty();
+        $('#myRankListView li').remove();
 
         fauxAjax(function () {
             $.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/api/Lulu")
