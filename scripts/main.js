@@ -102,7 +102,7 @@ sapForumApp.prototype = function () {
             return false;
         });
 
-        $('.fulldataBtn').click(function () {
+        $('#fulldataBtn').click(function () {
             erro = '';
             if ($('#tfirstname').val() == '')
                 erro += '- Primeiro Nome\n';
@@ -146,6 +146,7 @@ sapForumApp.prototype = function () {
                     }
                     $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User", dataUser)
                      .done(function (data) {
+                         alert("Dados salvo com sucesso!");
                          _loadHome(data);
                          $.mobile.changePage('#home', { transition: 'flip' });
                      })
@@ -162,8 +163,6 @@ sapForumApp.prototype = function () {
                 erro += '- Telefone\n';
             if ($('#detail').val() == '')
                 erro += '- Necessidade\n';
-            if ($('#dtAgenda').val() == '')
-                erro += '- Data\n';
 
             if (erro.length > 0) {
                 alert('Erros encontrados: ' + erro);
@@ -175,7 +174,7 @@ sapForumApp.prototype = function () {
                         idUser: iidUser,
                         tel: $('#tel').val(),
                         detail: $('#detail').val(),
-                        dtAgenda: $('#dtAgenda').val()
+                        dtAgenda: '20/02/2014'
                     };
                     $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Agenda", agendadata)
                     .done(function (data) {
@@ -300,7 +299,6 @@ sapForumApp.prototype = function () {
     },
 
     _initinfoSession = function () {
-        $('#dataAgenda').text("14/02/2014 08:00:00");
     },
 
     _initHome = function () {
@@ -320,6 +318,7 @@ sapForumApp.prototype = function () {
         $('#state').val('0');
         $('#sector').val('0');
         $('#billing').val('0');
+        $('#fulldataForm select').selectmenu('refresh', true);
     },
 
     _loadHome = function (userInfo) {
@@ -351,6 +350,9 @@ sapForumApp.prototype = function () {
             else
                 $.mobile.changePage('#lulurankPage', { transition: 'flip' });
         }
+
+        $('select').selectmenu('refresh', true);
+        $('#chkLulu checkbox').removeAttr('checked').checkboxradio('refresh')
     },
 
     _LoadLuluCombo = function () {
@@ -511,6 +513,8 @@ sapForumApp.prototype = function () {
     },
 
     _initlulurankPage = function () {
+        $('#myRankListView').empty();
+
         fauxAjax(function () {
             $.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/api/Lulu")
             .done(function (data) {

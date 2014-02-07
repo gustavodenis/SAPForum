@@ -2,7 +2,7 @@
 <html>
 <head>
     <title></title>
-    <meta charset="UTF-8" />
+    <meta charset="iso-8859-1" />
     <script src="jquery-mobile/jquery-1.9.1.min.js" type="text/javascript"></script>
     <script src="jquery-mobile/jquery.mobile-1.4.0.min.js" type="text/javascript"></script>
     <script src="cordova.js" type="text/javascript"></script>
@@ -37,7 +37,7 @@
             <a href="#luluPage" id="lulu" data-transition="fade" class="nav-icon icon-yellow mail-nav"></a>
         </div>
         <div>
-            <p class="landing-copyright copyright">SOFTTEK COPYRIGHT 2014. <br/>ALL RIGHTS RESERVED</p>
+            <p class="landing-copyright copyright">SOFTTEK COPYRIGHT 2014. <br />ALL RIGHTS RESERVED</p>
         </div>
     </div>
 
@@ -78,7 +78,8 @@
                     <h3>Cadastro completo!</h3>
                 </div>
             </div>
-            <form id="fulldataform">
+            <div class="decoration"></div>
+            <div id="fulldataForm">
                 Nome:
                 <input type="text" id="tfirstname" value="" />
                 Sobrenome:
@@ -89,9 +90,9 @@
                 <input type="text" id="temail" value="@" />
                 Cargo:
                 <input type="text" id="position" value="" />
-                City:
+                Cidade:
                 <input type="text" id="city" value="" />
-                State:
+                Estado:
                 <select id="state">
                     <option value="0" selected="selected">Selecione...</option>
                     <option value="AC">Acre</option>
@@ -149,10 +150,8 @@
                 <label>
                     <input type="checkbox" id="customerSAP" name="customerSAP">É Cliente SAP?
                 </label>
-                <p>
-                    <input type="submit" class="fulldataBtn" value="Gravar" data-icon="star" data-theme="a" />
-                </p>
-            </form>
+                <p><a id="fulldataBtn" data-role="button" href="#" data-icon="star" data-transition="slide" data-theme="a">Gravar</a></p>
+            </div>
         </div>
     </div>
 
@@ -266,7 +265,20 @@
                 </div>
             </div>
             <div class="decoration"></div>
-            <span id="dataAgenda"></span>
+            <div>
+                <p><b>Nome:</b></p>
+                <p>Como fomentar e acelerar a estratégia de aplicações móveis</p>
+                <p><b>Descrição</b></p>
+                <p>Saiba como proporcionar para a sua empresa uma experiência segura de mobilidade pautada por arquitetura, governança, estratégia e aplicativos capazes de atender os seus usuários onde quer que eles estejam.</p>
+                <p><b>Data e Horario:</b></p>
+                <p>
+                    Quarta-feira, 12 de Fevereiro de 2014<br />
+                    Campus Mobilidade - Auditório 6
+                </p>
+
+                <p><b>Palestrante:</b></p>
+                <p>Jose Gudino</p>
+            </div>
         </div>
     </div>
 
@@ -292,8 +304,6 @@
                 <input type="text" id="tel" value="" />
                 Qual a sua necessidade?
                 <input type="text" id="detail" value="" />
-                Alguma sugestão de data?
-                <input type="date" id="dtAgenda" value="" />
             </p>
             <p><a id="okAgenda" data-role="button" href="#home" data-icon="star" data-transition="slide" data-theme="a">Ok, Vamos agendar!</a></p>
         </div>
@@ -321,21 +331,21 @@
                     <option value="0" selected="selected">Selecione...</option>
                 </select>
             </div>
-            <div class="ui-field-contain">
+            <div id="chkLulu" class="ui-field-contain">
                 <label>
-                    <input type="checkbox" id="question1" name="question1">O estande está bem posicionado? 
+                    <input type="checkbox" id="question1" name="question1">O estande está bem posicionado?
                 </label>
                 <label>
-                    <input type="checkbox" id="question2" name="question2">Você foi bem recebido? 
+                    <input type="checkbox" id="question2" name="question2">Você foi bem recebido?
                 </label>
                 <label>
-                    <input type="checkbox" id="question3" name="question3">Está clara a mensagem que a empresa quer passar? 
+                    <input type="checkbox" id="question3" name="question3">Está clara a mensagem que a empresa quer passar?
                 </label>
                 <label>
-                    <input type="checkbox" id="question4" name="question4">Você indicaria este estande para alguém? 
+                    <input type="checkbox" id="question4" name="question4">Você indicaria este estande para alguém?
                 </label>
                 <label>
-                    <input type="checkbox" id="question5" name="question5">A atuação da empresa no evento despertou o interesse para que você a conheça melhor? 
+                    <input type="checkbox" id="question5" name="question5">A atuação da empresa no evento despertou o interesse para que você a conheça melhor?
                 </label>
             </div>
             <p><a href="#" class="topcoat-button" id="savelulu" data-role="button" data-icon="star" data-transition="slide" data-theme="e">Salvar</a></p>
