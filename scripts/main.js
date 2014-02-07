@@ -344,7 +344,7 @@ sapForumApp.prototype = function () {
     },
 
     _initluluPage = function () {
-        $('checkbox').removeAttr('checked').checkboxradio('refresh')
+        $('checkbox').prop('checked', false).checkboxradio('refresh');
 
         if (window.localStorage.getItem("luluOK") === null) {
             _LoadLuluCombo();
@@ -355,8 +355,6 @@ sapForumApp.prototype = function () {
             else
                 $.mobile.changePage('#home', { transition: 'flip' });
         }
-
-        $('select').selectmenu('refresh', true);
     },
 
     _LoadLuluCombo = function () {
@@ -502,6 +500,8 @@ sapForumApp.prototype = function () {
         for (var ln in lululist.value) {
             $('#standLuluCombo').append("<option value='" + lululist.value[ln].idStand + "'>" + lululist.value[ln].dsStand + "</option>");
         }
+
+        $('#standLuluCombo').selectmenu('refresh', true);
 
         //fauxAjax(function () {
         //    $.getJSON("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Stand")
