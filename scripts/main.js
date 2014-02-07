@@ -173,8 +173,7 @@ sapForumApp.prototype = function () {
                     var agendadata = {
                         idUser: iidUser,
                         tel: $('#tel').val(),
-                        detail: $('#detail').val(),
-                        dtAgenda: '20/02/2014'
+                        detail: $('#detail').val()
                     };
                     $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/Agenda", agendadata)
                     .done(function (data) {
@@ -332,6 +331,9 @@ sapForumApp.prototype = function () {
     },
 
     _initagendaPage = function () {
+
+        $('#tel').val('');
+        $('#detail').val('');
 
         if (window.localStorage.getItem("agenda") === null)
             $.mobile.changePage('#agendaPage', { transition: 'flip' });
