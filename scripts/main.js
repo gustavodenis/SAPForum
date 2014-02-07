@@ -179,7 +179,7 @@ sapForumApp.prototype = function () {
                     .done(function (data) {
                         alert('Agenda salva com suscesso!');
                         window.localStorage.setItem("agenda", "ok");
-                        $.mobile.changePage('#home', { transition: 'flip' });                        
+                        $.mobile.changePage('#home', { transition: 'flip' });
                     })
                     .fail(function (jqXHR, textStatus, errorThrown) {
                         alert("Request failed: " + textStatus + "," + errorThrown);
@@ -344,8 +344,6 @@ sapForumApp.prototype = function () {
     },
 
     _initluluPage = function () {
-        $('checkbox').prop('checked', false).checkboxradio('refresh');
-
         if (window.localStorage.getItem("luluOK") === null) {
             _LoadLuluCombo();
         }
@@ -358,6 +356,7 @@ sapForumApp.prototype = function () {
     },
 
     _LoadLuluCombo = function () {
+        $('#question1,#question2,#question3,#question4,#question5').prop('checked', false).checkboxradio('refresh');
         $('#standLuluCombo').empty();
         $('#standLuluCombo').append("<option value='0' selected='selected'>Selecione...</option>");
 
