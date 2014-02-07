@@ -143,7 +143,10 @@ sapForumApp.prototype = function () {
                         sector: $('#sector  option:selected').val(),
                         billing: $('#billing  option:selected').val(),
                         customerSAP: ($('#customerSAP').is(":checked") ? "1" : "0")
-                    }
+                    };
+
+                    window.localStorage.setItem("userInfo", JSON.stringify(dataUser));
+
                     $.post("http://ec2-54-200-107-211.us-west-2.compute.amazonaws.com/odata/User", dataUser)
                      .done(function (data) {
                          alert("Dados salvo com sucesso!");
@@ -313,12 +316,26 @@ sapForumApp.prototype = function () {
         $('#tlastname').val(dataUser.lastname);
         $('#temployer').val(dataUser.employer);
         $('#temail').val(dataUser.email);
-        $('#position').val('');
-        $('#city').val('');
-        $('#state').val('0');
-        $('#sector').val('0');
-        $('#billing').val('0');
-        $('#fulldataForm select').selectmenu('refresh', true);
+        
+        if(dataUser.position ===null) {
+            $('#position').val('');
+            $('#city').val('');
+            $('#state').val('0');
+            $('#sector').val('0');
+            $('#billing').val('0');
+            $('#customerSAP').prop('checked', false);
+            $('#fulldataForm select').selectmenu('refresh', true);
+        }
+        else
+        {
+            $('#position').val(dataUser.position);
+            $('#city').val(dataUser.city);
+            $('#state').val(dataUser.state);
+            $('#sector').val(dataUser.sector);
+            $('#billing').val(dataUser.billing);
+            $('#fulldataForm select').selectmenu('refresh', true);
+            $('#customerSAP').prop('checked',(dataUser.customerSAP == '1'));
+        }
     },
 
     _loadHome = function (userInfo) {
