@@ -4,26 +4,6 @@ document.addEventListener("deviceready", onDeviceReady, false);
 // PhoneGap is ready
 function onDeviceReady() { }
 
-function checkConnection() {
-    var networkState = navigator.network.connection.type;
-
-    var states = {};
-    states[Connection.UNKNOWN] = 'Unknown connection';
-    states[Connection.ETHERNET] = 'Ethernet connection';
-    states[Connection.WIFI] = 'WiFi connection';
-    states[Connection.CELL_2G] = 'Cell 2G connection';
-    states[Connection.CELL_3G] = 'Cell 3G connection';
-    states[Connection.CELL_4G] = 'Cell 4G connection';
-    states[Connection.NONE] = 'No network connection';
-
-    alert('Connection type: ' + states[networkState]);
-}
-
-function IsEmail(email) {
-    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    return regex.test(email);
-}
-
 var sapForumApp = function () { }
 
 sapForumApp.prototype = function () {
@@ -71,8 +51,6 @@ sapForumApp.prototype = function () {
                     erro += '- Empresa\n';
                 if ($('#email').val() == '')
                     erro += '- Email';
-                //if (IsEmail($('#email').val()))
-                //    erro += '- Email inválido\n';
 
                 if (erro.length > 0) {
                     alert('Erros encontrados: ' + erro);
@@ -112,8 +90,6 @@ sapForumApp.prototype = function () {
                 erro += '- Empresa\n';
             if ($('#temail').val() == '')
                 erro += '- Email\n';
-            //if (IsEmail($('#temail').val()))
-            //    erro += '- Email inválido\n';
             if ($('#position').val() == '')
                 erro += '- Cargo\n';
             if ($('#city').val() == '')
