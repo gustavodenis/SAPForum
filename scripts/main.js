@@ -344,7 +344,6 @@ sapForumApp.prototype = function () {
     },
 
     _initluluPage = function () {
-        $('select').selectmenu('refresh', true);
         $('checkbox').removeAttr('checked').checkboxradio('refresh')
 
         if (window.localStorage.getItem("luluOK") === null) {
@@ -355,7 +354,9 @@ sapForumApp.prototype = function () {
                 _LoadLuluCombo();
             else
                 $.mobile.changePage('#home', { transition: 'flip' });
-        }       
+        }
+
+        $('select').selectmenu('refresh', true);
     },
 
     _LoadLuluCombo = function () {
